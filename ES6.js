@@ -15,7 +15,7 @@
 		if (__object__.hasOwnProperty.call(name))
 			return 0;
 
-		if (!Object.defineProperty)
+		if (Object.defineProperty)
 		{
 			Object.defineProperty(this, name, descriptor || {
 				value: value,
@@ -882,7 +882,7 @@
 	/**
 	 * Math.sign
 	 * Returns the sign of the <value>, indicating whether <value> is positive, negative or zero
-	 * @param {Number} - value
+	 * @param {Number} value
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.31
 	 *
