@@ -132,7 +132,7 @@
 	/**
 	 * String.prototype.startsWith
 	 * Determines whether the beginning of the string instance matches a specified string.
-	 * @param {Generic} value
+	 * @param {*} value
 	 * @param {Number | String} [ index ]
 	 * @return {Boolean}
 	 * @edition ECMA-262 6th Edition, 15.5.4.22
@@ -210,7 +210,7 @@
 
 	/**
 	 * Array.of
-	 * @param {Generic} object - Variable number of arguments
+	 * @param {*} object - Variable number of arguments
 	 * @return {Array}
 	 * @edition ECMA-262 6th Edition, 15.4.3.3
 	 *
