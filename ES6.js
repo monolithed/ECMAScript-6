@@ -12,7 +12,7 @@
 
 	var define = function(name, value, descriptor)
 	{
-		if (__object__.hasOwnProperty.call(name))
+		if (__object__.hasOwnProperty.call(this, name))
 			return 0;
 
 		if (Object.defineProperty)
@@ -26,7 +26,7 @@
 		}
 		else
 			this[name] = value;
-	}
+	};
 
 
 	/**
