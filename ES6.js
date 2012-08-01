@@ -6,16 +6,19 @@
  * @date: Thu Nov 1 00:08:00 2011
  **/
 
-(function(__object__, __array__, defineProperty, getOwnPropertyDescriptor, getOwnPropertyNames, getPrototypeOf)
+
+(function(__object__, __array__)
 {
+	'use strict';
+
 	var define = function(name, value, descriptor)
 	{
 		if (__object__.hasOwnProperty.call(name))
 			return 0;
 
-		if (!defineProperty)
+		if (!Object.defineProperty)
 		{
-			defineProperty(this, name, descriptor || {
+			Object.defineProperty(this, name, descriptor || {
 				value: value,
 				configurable: true,
 				enumerable:   false,
@@ -335,15 +338,15 @@
 		if (__object__.toString.call(object) !== '[object Object]')
 			throw new TypeError('Object.getOwnPropertyDescriptors: ' + object + ' is not an Object!');
 
-		if (!getOwnPropertyNames || !getOwnPropertyDescriptor || !defineProperty)
+		if (!Object.getOwnPropertyNames || !Object.getOwnPropertyDescriptor || !Object.defineProperty)
 			return object;
 
 		var descriptors = {};
 
-		__array__.forEach.call(getOwnPropertyNames(object), function (property)
+		__array__.forEach.call(Object.getOwnPropertyNames(object), function (property)
 		{
-			defineProperty(descriptors, property, {
-				value: getOwnPropertyDescriptor(object, property),
+			Object.defineProperty(descriptors, property, {
+				value: Object.getOwnPropertyDescriptor(object, property),
 				configurable: false,
 				enumerable:   true,
 				writable:     false
@@ -378,15 +381,15 @@
 		if (__object__.toString.call(object) !== '[object Object]')
 			throw new TypeError('Object.getPropertyDescriptor: ' + object + ' is not an Object!');
 
-		if (!getOwnPropertyDescriptor || !getPrototypeOf)
+		if (!Object.getOwnPropertyDescriptor || !Object.getPrototypeOf)
 			return object;
 
-		var descriptor = getOwnPropertyDescriptor(object, name),
-		__proto__ = getPrototypeOf(object);
+		var descriptor = Object.getOwnPropertyDescriptor(object, name),
+		__proto__ = Object.getPrototypeOf(object);
 
 		while (descriptor === undefined && __proto__ !== null) {
-			descriptor = getOwnPropertyDescriptor(__proto__, name);
-			__proto__ = getPrototypeOf(__proto__);
+			descriptor = Object.getOwnPropertyDescriptor(__proto__, name);
+			__proto__ = Object.getPrototypeOf(__proto__);
 		}
 
 		return descriptor;
@@ -418,20 +421,20 @@
 		if (__object__.toString.call(object) !== '[object Object]')
 			throw new TypeError('Object.getPropertyNames: ' + object + ' is not an Object!');
 
-		if (!getOwnPropertyNames || !getPrototypeOf)
+		if (!Object.getOwnPropertyNames || !Object.getPrototypeOf)
 			return object;
 
-		var properies = getOwnPropertyNames(object),
-			__proto__ = getPrototypeOf(object);
+		var properies = Object.getOwnPropertyNames(object),
+			__proto__ = Object.getPrototypeOf(object);
 
 		while (__proto__ !== null)
 		{
-			__array__.forEach.call(getOwnPropertyNames(__proto__), function(property) {
+			__array__.forEach.call(Object.getOwnPropertyNames(__proto__), function(property) {
 				if (properies.indexOf(property) === -1)
 					properies.push(property);
 			});
 
-			__proto__ = getPrototypeOf(__proto__);
+			__proto__ = Object.getPrototypeOf(__proto__);
 		}
 
 		return properies;
@@ -914,4 +917,7 @@
 		return value > 0 ? Math.exp(Math.log(value) / 3) : -Math.exp(Math.log(-value) / 3);
 	});
 
-}(this, Object.prototype, Array.prototype, Object.defineProperty, Object.getOwnPropertyDescriptor, Object.getOwnPropertyNames, Object.getPrototypeOf));
+
+
+
+}(this, Object.prototype, Array.prototype));
