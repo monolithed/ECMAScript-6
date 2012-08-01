@@ -43,7 +43,7 @@
 	 * in the List elements. If length is 0, the empty string is returned.
 	 * @edition ECMA-262 6th Edition, 15.5.3.3
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * String.fromCodePoint(0x30, 107); // Ok
 	**/
@@ -83,7 +83,7 @@
 	 * the result is the code unit at position (including code points above 0xFFFF).
 	 * @edition ECMA-262 6th Edition, 15.5.4.5
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * 'A'.codePointAt(0) // 65
 	**/
@@ -116,7 +116,7 @@
 	 * @return {String}
 	 * @edition ECMA-262 6th Edition, 15.5.4.21
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * 'A'.repeat(2) // AA
 	**/
@@ -137,7 +137,7 @@
 	 * @return {Boolean}
 	 * @edition ECMA-262 6th Edition, 15.5.4.22
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Hello'.startsWith('He') // true
 	**/
@@ -152,10 +152,9 @@
 	 * @param {Number | String} value
 	 * @param {Number} [ index ]
 	 * @return {Boolean}
-
 	 * @edition ECMA-262 6th Edition, 15.5.4.23
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Hello'.endsWith('lo') // true
 	**/
@@ -178,7 +177,7 @@
 	 * @return {Boolean}
 	 * @edition ECMA-262 6th Edition, 15.5.4.24
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Hello'.contains('ll') // true
 	**/
@@ -194,7 +193,7 @@
 	 * the characters of this object (converted to a String).
 	 * @edition ECMA-262 6th Edition, 15.5.4.25
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Hello'.toArray() // ['H', 'e', 'l', 'l', 'o'];
 	**/
@@ -215,7 +214,7 @@
 	 * @return {Array}
 	 * @edition ECMA-262 6th Edition, 15.4.3.3
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Array.of('a', 'b', 'c'); // ['a', 'b', 'c'];
 	**/
@@ -232,7 +231,7 @@
 	 * @return {Array}
 	 * @edition ECMA-262 6th Edition, 15.4.3.4
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * 1.
 	 * function array () {
@@ -291,11 +290,11 @@
 	/**
 	 * Object.getOwnPropertyDescriptors
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
-
+	 *
 	 * @param {Object} object
 	 * @return {Object}
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * var object = {};
 	 *
@@ -361,7 +360,7 @@
 	 * @param {String} name - The name of the property
 	 * @return {Object}
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Object.getPropertyDescriptor({}, 'toString');
 	 *
@@ -398,7 +397,7 @@
 	 * @param {Object} object
 	 * @return {Array}
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Object.getPropertyNames({});
 	 *
@@ -445,7 +444,7 @@
 	 * @param {Generiс} - second generic value for egal comparison
 	 * @return {Boolean}
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Object.is(0,-0)     // false
 	 * Object.is('0', 0)   // false
@@ -470,7 +469,7 @@
 	 * @param {Generiс} - second generic value for egal comparison
 	 * @return {Boolean}
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Object.isnt(0, 0) // false
 	**/
@@ -485,7 +484,7 @@
 	 * @return {Boolean}
 	 * @edition ECMA-262 6th Edition, 15.2.3.15
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Object.isObject({}); // true
 	**/
@@ -511,7 +510,7 @@
 	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.7
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.EPSILON // 9007199254740991
 	**/
@@ -530,7 +529,8 @@
 	 * can be represented as a Number value without losing precision, which is 9007199254740991
 	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.7
-	 * Example:
+	 *
+	 * @example:
 	 *
 	 * Number.MAX_INTEGER // 9007199254740991
 	**/
@@ -560,7 +560,7 @@
 	 * @return {Number} Parses a string or integer and returns an integer.
 	 * @edition ECMA-262 6th Edition, 15.7.3.8
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.parseInt(0xF, 16) // 21
 	**/
@@ -578,7 +578,7 @@
 	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.9
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.parseFloat('1px') // 1
 	**/
@@ -594,7 +594,7 @@
 	 * returns true otherwise.
 	 * @edition ECMA-262 6th Edition, 15.7.3.10
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.isNaN(NaN) // true
 	 * Number.isNaN(1)   // false
@@ -613,7 +613,7 @@
 	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.11
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.isFinite(NaN) // false
 	 * Number.isFinite(0)   // true
@@ -633,7 +633,7 @@
 	 * @return {Boolean}
 	 * @edition ECMA-262 6th Edition, 15.7.3.12
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.isInteger(NaN) // false
 	 * Number.isFinite(1)    // true
@@ -656,7 +656,7 @@
 	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.13
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.toInteger(NaN) // false
 	 * Number.toInteger(0)   // true
@@ -690,7 +690,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.19
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.log10(10) // 0.9999999999999999
 	**/
@@ -706,7 +706,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.20
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.log2(10) // 3.3219280948873626
 	**/
@@ -723,7 +723,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.21
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.log1p(10) // 2.3978952727983707
 	**/
@@ -741,7 +741,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.22
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.expm1(10) // 22025.465794806718
 	**/
@@ -757,7 +757,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.23
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.cosh(10) // 11013.232920103324
 	**/
@@ -773,7 +773,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.24
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.sinh(10) // 11013.232874703393
 	**/
@@ -789,7 +789,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.25
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.tanh(10) // 0.9999999958776926
 	**/
@@ -805,7 +805,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.26
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.acosh(10) // 2.993222846126381
 	**/
@@ -821,7 +821,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.27
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Number.asinh(10) // 2.99822295029797
 	**/
@@ -836,7 +836,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.28
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Math.atanh(-1) // -Infinity
 	**/
@@ -853,7 +853,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.29
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Math.hypot(1, 1) // 1.4142135623730951
 	**/
@@ -870,7 +870,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.30
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Math.trunc(1.1) // 1
 	**/
@@ -886,7 +886,7 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.31
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Math.sign(-10); // 1
 	**/
@@ -905,20 +905,12 @@
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.32
 	 *
-	 * Example:
+	 * @example:
 	 *
 	 * Math.cbrt(10); // 2.154434690031884
 	**/
 	define.call(Math, 'cbrt', function(value) {
 		return value > 0 ? Math.exp(Math.log(value) / 3) : -Math.exp(Math.log(-value) / 3);
 	});
-
-
-
-	/**
-	 * ------------------------------------------------------------
-	 *  Data structures
-	 * ------------------------------------------------------------
-	**/
 
 }(Object.prototype, Array.prototype));
