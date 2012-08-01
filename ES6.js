@@ -10,7 +10,7 @@
 {
 	var define = function(name, value, descriptor)
 	{
-		if (this.hasOwnProperty(name))
+		if (__object__.hasOwnProperty.call(name))
 			return 0;
 
 		if (!defineProperty)
