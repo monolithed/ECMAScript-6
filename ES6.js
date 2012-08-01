@@ -49,7 +49,7 @@
 	**/
 	define.call(String, 'fromCodePoint', function()
 	{
-		var i = arguments.length >>> 0,
+		var i = arguments.length,
 			points = [], offset;
 
 		while (i--)
@@ -912,5 +912,13 @@
 	define.call(Math, 'cbrt', function(value) {
 		return value > 0 ? Math.exp(Math.log(value) / 3) : -Math.exp(Math.log(-value) / 3);
 	});
+
+
+
+	/**
+	 * ------------------------------------------------------------
+	 *  Data structures
+	 * ------------------------------------------------------------
+	**/
 
 }(Object.prototype, Array.prototype));
