@@ -6,7 +6,6 @@
  * @date: Thu Nov 1 00:08:00 2011
  **/
 
-
 (function(__object__, __array__)
 {
 	'use strict';
@@ -290,7 +289,7 @@
 	 */
 
 	/**
-	 * Object.getPropertyDescriptor
+	 * Object.getOwnPropertyDescriptors
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
 
 	 * @param {Object} object
