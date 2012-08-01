@@ -142,8 +142,7 @@
 	 *
 	 * Hello'.startsWith('He') // true
 	**/
-	define.call(String.prototype, 'startsWith', function(value, position)
-	{
+	define.call(String.prototype, 'startsWith', function(value, position) {
 		return this.indexOf(value, position | 0) === 0;
 	});
 
@@ -184,8 +183,7 @@
 	 *
 	 * Hello'.contains('ll') // true
 	**/
-	define.call(String.prototype, 'contains', function(value, index)
-	{
+	define.call(String.prototype, 'contains', function(value, index) {
 		return this.indexOf(value, index | 0) !== -1;
 	});
 
@@ -201,8 +199,7 @@
 	 *
 	 * Hello'.toArray() // ['H', 'e', 'l', 'l', 'o'];
 	**/
-	define.call(String.prototype, 'toArray', function()
-	{
+	define.call(String.prototype, 'toArray', function() {
 		return this.split('');
 	});
 
@@ -917,7 +914,4 @@
 		return value > 0 ? Math.exp(Math.log(value) / 3) : -Math.exp(Math.log(-value) / 3);
 	});
 
-
-
-
-}(this, Object.prototype, Array.prototype));
+}(Object.prototype, Array.prototype));
