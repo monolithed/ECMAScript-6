@@ -12,7 +12,7 @@
 
 	var define = function(name, value, descriptor)
 	{
-		if (__object__.hasOwnProperty.call(this, name))
+		if (name in this)
 			return 0;
 
 		if (Object.defineProperty)
