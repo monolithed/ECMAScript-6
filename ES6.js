@@ -1,7 +1,9 @@
+// -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 4 -*-
+
 /**
  * Implementation of ECMAScript 6 (Draft)
  * @author: Alexander Guinness
- * @version: 1.0
+ * @version: 1.1
  * license: MIT
  * @date: Thu Nov 1 00:08:00 2011
  **/
@@ -10,22 +12,40 @@
 {
 	'use strict';
 
-	var define = function(name, value, descriptor)
-	{
-		if (name in this)
-			return 0;
+	/** @inner */
+	var __global__ = this,
 
-		if (Object.defineProperty)
+	define = function(name)
+	{
+		var __own__ = __object__.hasOwnProperty,
+
+		set = function(name, value, descriptor)
 		{
-			Object.defineProperty(this, name, descriptor || {
-				value: value,
-				configurable: true,
-				enumerable:   false,
-				writable:     true
-			});
+			if (__own__.call(this, name))
+				return 0;
+
+			if (Object.defineProperty)
+			{
+				Object.defineProperty(this, name, descriptor || {
+					value: value,
+					configurable: true,
+					enumerable:   false,
+					writable:     true
+				});
+			}
+			else
+				this[name] = value;
+		}
+
+		if (__object__.toString.call(name) === '[object Object]')
+		{
+			for (var key in name) {
+				if (__own__.call(name, key))
+					set.call(this, key, name[key]);
+			}
 		}
 		else
-			this[name] = value;
+			set.apply(this, __array__.slice.call(arguments));
 	};
 
 
@@ -41,6 +61,7 @@
 	 * @param {Number | String} [...codePoint] -  code points
 	 * @return {String} Return the string value whose elements are, in order, the elements
 	 * in the List elements. If length is 0, the empty string is returned.
+	 * @throws {RangeError}
 	 * @edition ECMA-262 6th Edition, 15.5.3.3
 	 *
 	 * @example:
@@ -113,6 +134,7 @@
 	 * String.prototype.repeat
 	 * Creates a String consisting of the string elements of this object (converted to String) repeated <count> time
 	 * @param {Number} index - position
+	 * @throws {RangeError}
 	 * @return {String}
 	 * @edition ECMA-262 6th Edition, 15.5.4.21
 	 *
@@ -224,10 +246,11 @@
 
 	/**
 	 * Array.from
-	 *
 	 * @param {Object} object - array-like object.
 	 * Generic Array-like objects has indexed access and a valid length property,
 	 * but none of the array methods.
+	 *
+	 * @requires Array.prototype.map, Object.defineProperty (optional)
 	 * @return {Array}
 	 * @edition ECMA-262 6th Edition, 15.4.3.4
 	 *
@@ -290,8 +313,10 @@
 	/**
 	 * Object.getOwnPropertyDescriptors
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
-	 *
 	 * @param {Object} object
+	 * @requires Object.defineProperty, Object.getOwnPropertyNames,
+	 * Object.getOwnPropertyDescriptor, Array.prototype.forEach
+	 * @throws {TypeError}
 	 * @return {Object}
 	 *
 	 * @example:
@@ -355,9 +380,10 @@
 	/**
 	 * Object.getPropertyDescriptor
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
-	 *
 	 * @param {Object} object
 	 * @param {String} name - The name of the property
+	 * @requires Object.getOwnPropertyDescriptor, Object.getPrototypeOf
+	 * @throws {TypeError}
 	 * @return {Object}
 	 *
 	 * @example:
@@ -393,8 +419,9 @@
 	/**
 	 * Object.getPropertyNames
 	 * Returns an array of all the names of the properties
-	 *
 	 * @param {Object} object
+	 * @requires Object.getOwnPropertyNames, Object.getPrototypeOf, Array.prototype.forEach
+	 * @throws {TypeError}
 	 * @return {Array}
 	 *
 	 * @example:
@@ -439,9 +466,8 @@
 	 * Object.is
 	 * The internal comparison abstract operation SameValue(x, y),
 	 * where x and y are ECMAScript language values, produces true or false (ECMAScript 5 9.12).
-	 *
-	 * @param {Generiс} - first generic value for egal comparison
-	 * @param {Generiс} - second generic value for egal comparison
+	 * @param {*} - first generic value for egal comparison
+	 * @param {*} - second generic value for egal comparison
 	 * @return {Boolean}
 	 *
 	 * @example:
@@ -464,9 +490,9 @@
 	/**
 	 * Object.is
 	 * Opposed to the Object.is
-	 *
-	 * @param {Generiс} - first generic value for egal comparison
-	 * @param {Generiс} - second generic value for egal comparison
+	 * @param {*} - first generic value for egal comparison
+	 * @param {*} - second generic value for egal comparison
+	 * @requires Object.is
 	 * @return {Boolean}
 	 *
 	 * @example:
@@ -479,7 +505,6 @@
 
 	/**
 	 * Object.isObject
-	 *
 	 * @param {Object}
 	 * @return {Boolean}
 	 * @edition ECMA-262 6th Edition, 15.2.3.15
@@ -500,14 +525,11 @@
 	**/
 
 
-	var __global__ = this;
-
 	/**
 	 * Number.EPSILON
 	 * The value of Number.EPSILON is the difference between 1 and the smallest value
 	 * greater than 1 that is representable as a Number value, which
 	 * is approximately 2.2204460492503130808472633361816 x 10-16
-	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.7
 	 *
 	 * @example:
@@ -524,10 +546,8 @@
 
 	/**
 	 * Number.MAX_INTEGER
-	 *
 	 * The value of Number.MAX_INTEGER is the largest integer value that
 	 * can be represented as a Number value without losing precision, which is 9007199254740991
-	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.7
 	 *
 	 * @example:
@@ -550,13 +570,11 @@
 	 * it is assumed to be 10 except when the number begins with the character pairs 0x or 0X,
 	 * in which case a radix of 16 is assumed. If radix is 16, the number may also optionally
 	 * begin with the character pairs 0x or 0X.
-
 	 * @param {String} - value
 	 * @param {Number} - radix
 	 * The radix parameter is used to specify which numeral system to be used,
 	 * for example, a radix of 16 (hexadecimal) indicates that the number in the string
 	 * should be parsed from a hexadecimal number to a decimal number.
-	 *
 	 * @return {Number} Parses a string or integer and returns an integer.
 	 * @edition ECMA-262 6th Edition, 15.7.3.8
 	 *
@@ -571,11 +589,9 @@
 
 	/**
 	 * Number.parseFloat
-	 *
 	 * @param {String} - value
 	 * @return {Number} Parses a string or integer and returns a floating point number.
 	 * returns true otherwise.
-	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.9
 	 *
 	 * @example:
@@ -588,7 +604,6 @@
 
 	/**
 	 * Number.isNaN
-	 *
 	 * @param {Number} - value
 	 * @return {Boolean} Returns true if the supplied number is NaN, false otherwise;
 	 * returns true otherwise.
@@ -606,11 +621,9 @@
 
 	/**
 	 * Number.isFinite
-	 *
-	 * @param {Generiс} - value
+	 * @param {Number} - value
 	 * @return {Boolean} Returns false if the supplied number is NaN, Infinity or -Infinity;
 	 * returns true otherwise.
-	 *
 	 * @edition ECMA-262 6th Edition, 15.7.3.11
 	 *
 	 * @example:
@@ -625,11 +638,10 @@
 
 	/**
 	 * Number.isInteger
-	 * Add a toInteger property be to the Number constructor,
-	 * for converting values to IEEE-754 double precision integers,
-	 * exactly as ECMA-262’s ToInteger internal method.
-	 *
+	 * Add a toInteger property be to the Number constructor, for converting values to IEEE-754
+	 * double precision integers, exactly as ECMA-262’s ToInteger internal method.
 	 * @param {Number} - value
+	 * @requires Number.MAX_INTEGER
 	 * @return {Boolean}
 	 * @edition ECMA-262 6th Edition, 15.7.3.12
 	 *
@@ -649,11 +661,10 @@
 
 	/**
 	 * Number.toInteger
-	 *
 	 * @param {Number} - value
 	 * @return {Boolean} Returns false if the supplied number is NaN, Infinity or -Infinity;
 	 * returns true otherwise.
-	 *
+	 * @requires Number.isFinite, Math.sign
 	 * @edition ECMA-262 6th Edition, 15.7.3.13
 	 *
 	 * @example:
@@ -685,7 +696,6 @@
 	/**
 	 * Math.log10
 	 * Returns an implementation-dependent approximation to the base 2 logarithm of <value>
-	 *
 	 * @param {Number} - value
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.19
@@ -867,6 +877,7 @@
 	 * Returns the integral part of the number <value>, removing any fractional digits.
 	 * If <value> is already an integer, the result is <value>
 	 * @param {Number} - value
+	 * @requires Number.isFinite
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.30
 	 *
@@ -911,6 +922,267 @@
 	**/
 	define.call(Math, 'cbrt', function(value) {
 		return value > 0 ? Math.exp(Math.log(value) / 3) : -Math.exp(Math.log(-value) / 3);
+	});
+
+
+	/**
+	 * ------------------------------------------------------------
+	 *  Data structures
+	 * ------------------------------------------------------------
+	**/
+
+	/**
+	 * @private
+	 * @param {Array} array
+	 * @param {*} value
+	 * @requires Object.is
+	 * @return {Number}
+	 **/
+	var __find__ =  function(array, value) {
+		var i = array.length >>> 0;
+
+		while (i--)
+			if (Object.is(array[i], value))
+				return i;
+		return -1;
+	};
+
+	/**
+	 * Map
+	 * @class
+	 * @memberOf global
+	 *
+	 * @description
+	 * Map objects are simple key/value maps. Any value (both objects and primitive values)
+	 * may be used as either a key or a value. Key equality is based on the "same-value"
+	 * algorithm: NaN is considered the same as NaN (even though NaN !== NaN), -0 and +0
+	 * are considered distinct (even though -0 === +0), and all other values are considered
+	 * equal according to the semantics of the === operator.
+	 *
+	 * @example:
+	 *
+	 * var map = new Map();
+	 *
+	 * // Setting the values
+	 * map.set(-0,  0);
+	 * map.set(+0,  1);
+	 * map.set('b', 2);
+	 * map.set('a', 3);
+	 * map.set('a', 4);
+	 * map.set(Array, 5);
+	 * map.set([], 6);
+	 * map.set(NaN, 7);
+	 * map.set(function() {}, 8);
+	 *
+	 * // Getting the values
+	 * map.set(-0);  // 0
+	 * map.set(+0);  // 1
+	 * map.set('b'); // 2
+	 * map.set('a'); // 4
+	 * map.set(Array); // 5
+	 * map.set([]);  // undefined
+	 * map.set(NaN); // 7
+	 * map.set(function() {}); // undefined
+	 *
+	 * // Removes any value associated to the key
+	 * map.delete('a'); // true
+	 *
+	 * // Check the keys
+	 * map.has(-0); // true
+	 *
+	 * // Getting the number of pairs in Map
+	 * map.size(); // 7
+	**/
+	define.call(__global__, 'Map', function()
+	{
+		if (!(this instanceof Map))
+			return new Map;
+
+		var index = 0;
+
+		/** @static */
+		define.call(this, {
+			keys:   [],
+			values: []
+		});
+
+		/**
+		 * @lends Map.prototype
+		 * @constructs
+		**/
+		define.call(Map.prototype, {
+			/**
+			 * Map.get
+			 * Returns the value associated to the key, or undefined if there is none.
+			 * @param {*}
+			 * @return {*}
+			 */
+			get: function(key) {
+				if ((index = __find__(this.keys, key)) !== -1)
+					return this.values[index];
+			},
+
+			/**
+			 * Map.set
+			 * Sets the value for the key in Map. Returns undefined.
+			 * @param {*} key
+			 * @param {*} value
+			 * @return {void}
+			 */
+			set: function(key, value) {
+				if ((index = __find__(this.keys, key)) === -1) {
+					this.keys.push(key);
+					this.values.push(value);
+				}
+				else
+					this.values[index] = value;
+			},
+
+			/**
+			 * Map.has
+			 * Returns a boolean asserting whether a value has been associated to the key in Map or not
+			 * @param {*} key
+			 * @return {Boolean}
+			 */
+			has: function(key) {
+				return __find__(this.keys, key) !== -1;
+			},
+
+			/**
+			 * Map.delete
+			 * Removes any value associated to the key. After such a call, myMap.has(key) will return false.
+			 * @param {*} key
+			 * @return {Boolean}
+			 */
+			'delete': function(key) {
+				if ((index = __find__(this.keys, key)) === -1)
+					return false;
+
+				this.keys.splice(index, 1);
+				this.values.splice(index, 1);
+
+				return true;
+			},
+
+			/**
+			 * Map.size
+			 * Returns the number of key/value pairs in Map.
+			 * @return {Number}
+			 */
+			size: function() {
+				return this.keys.length >>> 0;
+			}
+		});
+	});
+
+
+	/**
+	 * Set
+	 * @class
+	 * @memberOf global
+	 *
+	 * @description
+	 * Set objects let you store unique values of any type, whether primitive values or object references.
+	 * Values equality is not based on the same algorithm as the one used in the === operator.
+	 * Specifically, for Sets, +0 (which is strictly equal to -0) and -0 are different values.
+	 * NaN can also be stored in a Set.
+	 *
+	 * @example:
+	 *
+	 * var set = new Set();
+	 *
+	 * // Setting the values
+	 *
+	 * set.add(Array);
+	 * set.add(-0);
+	 * set.add(+0);
+	 * set.add('b');
+	 * set.add('a');
+	 * set.add('a');
+	 * set.add([]);
+	 * set.add(function() {});
+	 * set.add(NaN);
+	 *
+	 * // Check the values
+	 * set.has(-0);  // true
+	 * set.has(+0);  // true
+	 * set.has('b'); // true
+	 * set.has('a'); // true
+	 * set.has(Array); // true
+	 * set.has([]);  // false
+	 * set.has(NaN); // true
+	 * set.has(function() {}); // false
+	 *
+	 * // Removes the value
+	 * map.delete(-0); // true
+	 *
+	 * // Getting the number of values in Set
+	 * set.size(); // 7
+	**/
+	define.call(__global__, 'Set', function()
+	{
+		if (!(this instanceof Set))
+			return new Set;
+
+		var index = 0;
+
+		/** @static */
+		define.call(this, {
+			values: []
+		});
+
+		/**
+		 * @lends Set.prototype
+		 * @constructs
+		**/
+		define.call(Set.prototype, {
+			/**
+			 * Set.add
+			 * Adds the value to mySet. Returns undefined.
+			 * @param {*} value
+			 * @return {void}
+			 */
+			add: function(value) {
+				if ((index = __find__(this.values, value)) === -1)
+					this.values.push(value);
+				else
+					this.values[index] = value;
+			},
+
+			/**
+			 * Set.has
+			 * Returns a boolean asserting whether the value has been added to Set or not
+			 * @param {*} value
+			 * @return {Boolean}
+			 */
+			has: function(value) {
+				return __find__(this.values, value) !== -1;
+			},
+
+			/**
+			 * Set.delete
+			 * Sets the value for the key in mySet. Returns undefined.
+			 * @param {*} key
+			 * @return {void}
+			 */
+			'delete': function(value) {
+				if ((index = __find__(this.values, value)) === -1)
+					return false;
+
+				this.values.splice(index, 1);
+
+				return true;
+			},
+
+			/**
+			 * Set.size
+			 * Returns the number of values in Set.
+			 * @return {Number}
+			 */
+			size: function() {
+				return this.values.length >>> 0;
+			}
+		});
 	});
 
 }(Object.prototype, Array.prototype));
