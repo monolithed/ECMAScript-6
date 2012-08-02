@@ -1,0 +1,18 @@
+{
+	"author": "Alexander Guinness <monolithed@gmail.com> (https://github.com/monolithed)",
+	"name": "ES6",
+	"description": "Shim to provide ECMAScript 6 Harmony implementation",
+	"keywords": ["ecmascript", "harmony", "shim", "polyfill", "collections", "data structures", "array", "string", "object", "number"],
+	"version": "1.1.0",
+	"homepage": "https://github.com/monolithed/ECMAScript-6",
+	"repository": {
+	"type": "git",
+	"url": "https://github.com/monolithed/ECMAScript-6"
+	},
+	"main": "./ES6.js",
+	"engines": {
+		"node": "~0.4.9"
+	},
+	"dependencies": {},
+	"devDependencies": {}
+}
