@@ -942,7 +942,7 @@
 		var i = array.length >>> 0;
 
 		while (i--)
-			if (Object.is(array[i], value))
+			if (i in array && Object.is(array[i], value))
 				return i;
 		return -1;
 	};
@@ -992,6 +992,11 @@
 	 *
 	 * // Getting the number of pairs in Map
 	 * map.size(); // 7
+	 *
+	 * // Iterating over values stored in Set
+	 * map.__iterator__(function(key, value) {
+	 *    console.log(key, value);
+	 * });
 	**/
 	define.call(__global__, 'Map', function()
 	{
@@ -1071,6 +1076,20 @@
 			 */
 			size: function() {
 				return this.keys.length >>> 0;
+			},
+
+			/**
+			 * Map.__iterator__ ( Undocumented feature )
+			 * Allow for iterating over Maps and enumerating their keys
+			 * @param {Function} callback - is invoked with two arguments (the element key and value)
+			 * @param {Object} [ context ] - Object to use as <this> when executing callback
+			 * @return {void}
+			 */
+			__iterator__: function(callback, context) {
+				for (var i = 0, length = this.size(); i < length; i++) {
+					if (i in this.keys && i in this.values)
+						callback.call(context, this.keys[i], this.values[i]);
+				}
 			}
 		});
 	});
@@ -1118,6 +1137,11 @@
 	 *
 	 * // Getting the number of values in Set
 	 * set.size(); // 7
+	 *
+	 * // Iterating over values stored in Set
+	 * set.__iterator__(function(value) {
+	 *    console.log(value);
+	 * });
 	**/
 	define.call(__global__, 'Set', function()
 	{
@@ -1175,12 +1199,26 @@
 			},
 
 			/**
-			 * Set.size
+			 * Set.size()
 			 * Returns the number of values in Set.
 			 * @return {Number}
 			 */
 			size: function() {
 				return this.values.length >>> 0;
+			},
+
+			/**
+			 * Set.__iterator__ ( Undocumented feature )
+			 * Allow for iterating over values stored in Set
+			 * @param {Function} callback - is invoked with one argument (the element value)
+			 * @param {Object} [ context ] - Object to use as <this> when executing callback
+			 * @return {void}
+			 */
+			__iterator__: function(callback, context) {
+				for (var i = 0, length = this.size(); i < length; i++) {
+					if (i in this.values)
+						callback.call(context, this.values[i]);
+				}
 			}
 		});
 	});
