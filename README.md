@@ -1,6 +1,12 @@
-# ECMAScript 6
+# ECMAScript 6 Harmony
 
-Implementation of ECMAScript 6 Draft
+ECMAScript 6 Harmony polyfil
+
+
+## Collections (data structures)
+
+* **Map**<br />
+* **Set**<br />
 
 ## Array
 
@@ -124,11 +130,8 @@ Implementation of ECMAScript 6 Draft
 ## Information
 
 [ECMAScript 6 compatibility table] (http://kangax.github.com/es5-compat-table/es6/) <br />
-
 [Historical records of working draft of the ECMA-262 6th specification] (http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts) <br />
-
 [Proposals of ECMA-262 6th specification] (http://wiki.ecmascript.org/doku.php?id=harmony:proposals) <br />
-
 
 
 
