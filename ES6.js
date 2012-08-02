@@ -10,7 +10,7 @@
 
 (function(__object__, __array__)
 {
-	//'use strict';
+	'use strict';
 
 	/** @inner */
 	var __global__ = this,
