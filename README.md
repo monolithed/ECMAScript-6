@@ -81,50 +81,54 @@ ECMAScript 6 Harmony polyfil
 * **Number.toInteger**<br />
 *ECMA-262 6th Edition, 15.7.3.13*<br />
 
+* **Number.prototype.clz**<br />
+*ECMA-262 6th Edition, 15.7.3.13*<br />
+
 
 ## Math
 
-* **Number.log10**<br />
+* **Math.log10**<br />
 *ECMA-262 6th Edition, 15.8.2.19*<br />
 
-* **Number.log2**<br />
+* **Math.log2**<br />
 *ECMA-262 6th Edition, 15.8.2.20*<br />
 
-* **Number.log1p**<br />
+* **Math.log1p**<br />
 *ECMA-262 6th Edition, 15.8.2.21*<br />
 
-* **Number.expm1**<br />
+* **Math.expm1**<br />
 *ECMA-262 6th Edition, 15.8.2.22*<br />
 
-* **Number.cosh**<br />
+* **Math.cosh**<br />
 *ECMA-262 6th Edition, 15.8.2.23*<br />
 
-* **Number.sinh**<br />
+* **Math.sinh**<br />
 *ECMA-262 6th Edition, 15.8.2.24*<br />
 
-* **Number.tanh**<br />
+* **Math.tanh**<br />
 *ECMA-262 6th Edition, 15.8.2.25*<br />
 
-* **Number.acosh**<br />
+* **Math.acosh**<br />
 *ECMA-262 6th Edition, 15.8.2.26*<br />
 
-* **Number.asinh**<br />
+* **Math.asinh**<br />
 *ECMA-262 6th Edition, 15.8.2.27*<br />
 
-* **Number.atanh**<br />
+* **Math.atanh**<br />
 *ECMA-262 6th Edition, 15.8.2.28*<br />
 
-* **Number.hypot**<br />
+* **Math.hypot**<br />
 *ECMA-262 6th Edition, 15.8.2.29*<br />
 
-* **Number.trunc**<br />
+* **Math.trunc**<br />
 *ECMA-262 6th Edition, 15.8.2.30*<br />
 
-* **Number.sign**<br />
+* **Math.sign**<br />
 *ECMA-262 6th Edition, 15.8.2.31*<br />
 
-* **Number.cbrt**<br />
+* **Math.cbrt**<br />
 *ECMA-262 6th Edition, 15.8.2.32*<br />
+
 
 
 ## Information

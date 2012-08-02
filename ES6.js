@@ -10,7 +10,7 @@
 
 (function(__object__, __array__)
 {
-	'use strict';
+	//'use strict';
 
 	/** @inner */
 	var __global__ = this,
@@ -591,7 +591,6 @@
 	 * Number.parseFloat
 	 * @param {String} - value
 	 * @return {Number} Parses a string or integer and returns a floating point number.
-	 * returns true otherwise.
 	 * @edition ECMA-262 6th Edition, 15.7.3.9
 	 *
 	 * @example:
@@ -606,7 +605,6 @@
 	 * Number.isNaN
 	 * @param {Number} - value
 	 * @return {Boolean} Returns true if the supplied number is NaN, false otherwise;
-	 * returns true otherwise.
 	 * @edition ECMA-262 6th Edition, 15.7.3.10
 	 *
 	 * @example:
@@ -623,7 +621,6 @@
 	 * Number.isFinite
 	 * @param {Number} - value
 	 * @return {Boolean} Returns false if the supplied number is NaN, Infinity or -Infinity;
-	 * returns true otherwise.
 	 * @edition ECMA-262 6th Edition, 15.7.3.11
 	 *
 	 * @example:
@@ -687,6 +684,53 @@
 
 
 	/**
+	 * Number.prototype.clz
+	 *
+	 * @description
+	 * The count leading zeros (clz) operation can be used to efficiently implement normalization,
+	 * which encodes an integer as m × 2e, where m has its most significant bit
+	 * in a known position (such as the highest position).
+	 * This can in turn be used to implement Newton-Raphson division, perform integer
+	 * to floating point conversion in software, and other applications.
+	 * Count leading zeros (clz) can be used to compute the 32-bit predicate "x=y" (zero if true, one if false)
+	 * via the identity (x-y).clz() >> 5, where ">>" is unsigned right shift.
+	 * It can be used to perform more sophisticated bit operations like finding the first string of n 1 bits.
+	 * The expression 16 − (x − 1).clz() / 2 is an effective initial guess for computing
+	 * the square root of a 32-bit integer using Newton's method.
+	 * It can also efficiently generate exponentially distributed integers by taking
+	 * the clz of uniformly random integers.
+	 *
+	 * @return {Number} Count leading zeroes operation;
+	 * @requires Number.isFinite
+	 * @edition ECMA-262 6th Edition, 15.7.3.14
+	 *
+	 * @example:
+	 *
+	 * 00000000000000001000000000001000.clz(); // 22
+	**/
+	define.call(Number.prototype, 'clz', function()
+	{
+		var value = Number(this),
+			bits = 32;
+
+		if (!value || !Number.isFinite(value))
+			return bits;
+
+		var offset = [0xFFFF0000, 0xFF000000, 0xF0000000, 0xC0000000, 0x80000000],
+			count = 0, i = 0;
+
+		while (bits >>= 1) {
+			if ((value & offset[i++]) == 0) {
+				count += bits;
+				value <<= bits;
+			}
+		}
+
+		return count;
+	});
+
+
+	/**
 	 * ------------------------------------------------------------
 	 *  Math
 	 * ------------------------------------------------------------
@@ -710,8 +754,8 @@
 
 
 	/**
-	 * Math.log10
-	 * Returns an implementation-dependent approximation to the base 10 logarithm of <value>
+	 * Math.log2
+	 * Returns an implementation-dependent approximation to the base 2 logarithm of <value>
 	 * @param {Number} - value
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.20
@@ -927,7 +971,7 @@
 
 	/**
 	 * ------------------------------------------------------------
-	 *  Data structures
+	 *  Collections (data structures)
 	 * ------------------------------------------------------------
 	**/
 
