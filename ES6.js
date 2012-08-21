@@ -658,28 +658,22 @@
 
 	/**
 	 * Number.toInteger
-	 * @param {Number} - value
-	 * @return {Boolean} Returns false if the supplied number is NaN, Infinity or -Infinity;
-	 * returns true otherwise.
-	 * @requires Number.isFinite, Math.sign
+	 * @param {String} - value
+	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.7.3.13
 	 *
 	 * @example:
 	 *
-	 * Number.toInteger(NaN) // false
-	 * Number.toInteger(0)   // true
+	 * Number.toInteger(undefined) // 0
+	 * Number.toInteger(null) // 0
+	 * Number.toInteger(NaN)  // 0
+	 * Number.toInteger(0.1)  // 0
+	 * Number.toInteger('0')  // 0
+	 * Number.toInteger(0)    // 0
 	**/
 	define.call(Number, 'toInteger', function(value)
 	{
-		var number = Number(value);
-
-		if (__global__.isNaN(value))
-			return +0;
-
-		if (number === 0 || !Number.isFinite(value))
-			return number;
-
-		return Math.sign(number) * Math.floor(Math.abs(number));
+		return !value ? 0 : value | 0;
 	});
 
 
