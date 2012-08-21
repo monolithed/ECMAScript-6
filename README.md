@@ -130,6 +130,42 @@ ECMAScript 6 Harmony polyfil
 *ECMA-262 6th Edition, 15.8.2.32*<br />
 
 
+## Installation
+
+#### Downloading
+
+Choose one of the ways to download the ECMAScript 6 Harmony polyfil:
+
+*npm*
+
+```
+sudo npm install -g es6
+```
+
+*git*
+
+```
+git clone git@github.com:monolithed/ECMAScript-6.git
+```
+
+*zip/gzip*
+
+```
+https://github.com/monolithed/ECMAScript-6/downloads
+```
+
+#### Server-side including
+
+```javascript
+require('./ES6.js');
+```
+
+#### Client-side including
+
+```html
+<script src="./ES6.js" type="text/javascript"></script>
+```
+
 
 ## Information
 
@@ -138,10 +174,8 @@ ECMAScript 6 Harmony polyfil
 [Proposals of ECMA-262 6th specification] (http://wiki.ecmascript.org/doku.php?id=harmony:proposals) <br />
 
 
-
 ##.
 
-* License
-   ECMAScript 6 implementation is licensed under the MIT (MIT_LICENSE.txt) license
+* ECMAScript 6 Harmony polyfil is licensed under the MIT (MIT_LICENSE.txt) license
 
 * Copyright (c) 2011 [Alexander Guinness] (https://github.com/monolithed)
