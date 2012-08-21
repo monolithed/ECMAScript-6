@@ -161,7 +161,7 @@
 	 *
 	 * @example:
 	 *
-	 * Hello'.startsWith('He') // true
+	 * 'Hello'.startsWith('He') // true
 	**/
 	define.call(String.prototype, 'startsWith', function(value, position) {
 		return this.indexOf(value, position | 0) === 0;
@@ -529,14 +529,14 @@
 	 * Number.EPSILON
 	 * The value of Number.EPSILON is the difference between 1 and the smallest value
 	 * greater than 1 that is representable as a Number value, which
-	 * is approximately 2.2204460492503130808472633361816 x 10-16
+	 * is approximately 2.2204460492503130808472633361816 x10-16
 	 * @edition ECMA-262 6th Edition, 15.7.3.7
 	 *
 	 * @example:
 	 *
-	 * Number.EPSILON // 9007199254740991
+	 * Number.EPSILON // 2.220446049250313e-16
 	**/
-	define.call(Number, 'EPSILON', {
+	define.call(Number, 'EPSILON', null, {
 		value: 2.220446049250313e-16,
 		configurable: false,
 		enumerable:   false,
@@ -554,7 +554,7 @@
 	 *
 	 * Number.MAX_INTEGER // 9007199254740991
 	**/
-	define.call(Number, 'MAX_INTEGER', {
+	define.call(Number, 'MAX_INTEGER', null, {
 		value: 9007199254740991,
 		configurable: false,
 		enumerable:   false,
