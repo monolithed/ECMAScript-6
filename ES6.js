@@ -733,7 +733,7 @@
 
 	/**
 	 * Math.log10
-	 * Returns an implementation-dependent approximation to the base 2 logarithm of <value>
+	 * Returns an implementation-dependent approximation to the base 10 logarithm of <value>
 	 * @param {Number} - value
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.19
@@ -786,6 +786,7 @@
 	 * from the exponential function of <value> The result is computed in a way
 	 * that is accurate even when the <value> of value is close 0.
 	 * @param {Number} - value
+	 * @requires Object.is
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.22
 	 *
@@ -793,8 +794,12 @@
 	 *
 	 * Number.expm1(10) // 22025.465794806718
 	**/
-	define.call(Math, 'expm1', function(value) {
-		return (value > -1.0e-6 && value < 1.0e-6) ? (value + value * value / 2) : (Math.exp(value) - 1);
+	define.call(Math, 'expm1', function(value)
+	{
+		if (Object.is(value, -0))
+			return -0;
+
+		return value > -1.0e-6 && value < 1.0e-6 ? value + value * value / 2 : Math.exp(value) - 1;
 	});
 
 
@@ -802,6 +807,7 @@
 	 * Math.cosh
 	 * Returns an implementation-dependent approximation to the hyperbolic cosine of <value>
 	 * @param {Number} - value
+	 * @requires Object.is
 	 * @return {Number}
 	 * @edition ECMA-262 6th Edition, 15.8.2.23
 	 *
@@ -809,7 +815,11 @@
 	 *
 	 * Number.cosh(10) // 11013.232920103324
 	**/
-	define.call(Math, 'cosh', function(value) {
+	define.call(Math, 'cosh', function(value)
+	{
+		if (Object.is(value, -Infinity) || value === 0)
+			return value;
+
 		return (Math.exp(value) + Math.exp(-value)) / 2;
 	});
 
@@ -825,7 +835,11 @@
 	 *
 	 * Number.sinh(10) // 11013.232874703393
 	**/
-	define.call(Math, 'sinh', function(value) {
+	define.call(Math, 'sinh', function(value)
+	{
+		if (Object.is(value, -Infinity) || value === 0)
+			return value;
+
 		return (Math.exp(value) - Math.exp(-value)) / 2;
 	});
 
@@ -841,8 +855,15 @@
 	 *
 	 * Number.tanh(10) // 0.9999999958776926
 	**/
-	define.call(Math, 'tanh', function(value) {
-		return (Math.exp(value) - Math.exp(-value)) / (Math.exp(value) + Math.exp(-value));
+	define.call(Math, 'tanh', function(value)
+	{
+		if (Object.is(value, +Infinity))
+			return +1;
+
+		else if (Object.is(value, -Infinity))
+			return -1;
+
+		return value === 0 ? value : (Math.exp(value) - Math.exp(-value)) / (Math.exp(value) + Math.exp(-value));
 	});
 
 
@@ -873,9 +894,14 @@
 	 *
 	 * Number.asinh(10) // 2.99822295029797
 	**/
-	define.call(Math, 'asinh', function(value) {
+	define.call(Math, 'asinh', function(value)
+	{
+		if (!Number.isFinite(value) || value === 0)
+			return value;
+
 		return Math.log(value + Math.sqrt(value * value + 1));
 	});
+
 
 	/**
 	 * Math.atanh
@@ -889,7 +915,7 @@
 	 * Math.atanh(-1) // -Infinity
 	**/
 	define.call(Math, 'atanh', function(value) {
-		return 0.5 * Math.log((1 + value) / (1 - value));
+		return value === 0 ? value : 0.5 * Math.log((1 + value) / (1 - value));
 	});
 
 
@@ -906,6 +932,13 @@
 	 * Math.hypot(1, 1) // 1.4142135623730951
 	**/
 	define.call(Math, 'hypot', function(x, y) {
+
+		if (!Number.isFinite(x))
+			return x;
+
+		if (!Number.isFinite(y))
+			return y;
+
 		return Math.sqrt(x * x + y * y);
 	});
 
@@ -924,7 +957,7 @@
 	 * Math.trunc(1.1) // 1
 	**/
 	define.call(Math, 'trunc', function(value) {
-		return !Number.isFinite(value) ? value : value | 0;
+		return value === 0 ? value : !Number.isFinite(value) ? value : value | 0;
 	});
 
 
@@ -958,7 +991,11 @@
 	 *
 	 * Math.cbrt(10); // 2.154434690031884
 	**/
-	define.call(Math, 'cbrt', function(value) {
+	define.call(Math, 'cbrt', function(value)
+	{
+		if (value === 0)
+			return value;
+
 		return value > 0 ? Math.exp(Math.log(value) / 3) : -Math.exp(Math.log(-value) / 3);
 	});
 
