@@ -3,7 +3,7 @@
 /**
  * Implementation of ECMAScript 6 (Draft)
  * @author: Alexander Guinness
- * @version: 1.1
+ * @version: 0.0.2
  * license: MIT
  * @date: Thu Nov 1 00:08:00 2011
  **/
@@ -673,7 +673,10 @@
 	**/
 	define.call(Number, 'toInteger', function(value)
 	{
-		return !value ? 0 : value | 0;
+		if (Object.is(value, +Infinity) || Object.is(value, -Infinity) || value === 0)
+			return value;
+
+		return value | 0;
 	});
 
 
@@ -1050,14 +1053,14 @@
 	 * map.set(function() {}, 8);
 	 *
 	 * // Getting the values
-	 * map.set(-0);  // 0
-	 * map.set(+0);  // 1
-	 * map.set('b'); // 2
-	 * map.set('a'); // 4
-	 * map.set(Array); // 5
-	 * map.set([]);  // undefined
-	 * map.set(NaN); // 7
-	 * map.set(function() {}); // undefined
+	 * map.get(-0);  // 0
+	 * map.get(+0);  // 1
+	 * map.get('b'); // 2
+	 * map.get('a'); // 4
+	 * map.get(Array); // 5
+	 * map.get([]);  // undefined
+	 * map.get(NaN); // 7
+	 * map.get(function() {}); // undefined
 	 *
 	 * // Removes any value associated to the key
 	 * map.delete('a'); // true
@@ -1097,7 +1100,8 @@
 			 * @param {*}
 			 * @return {*}
 			 */
-			get: function(key) {
+			get: function(key)
+			{
 				if ((index = __find__(this.keys, key)) !== -1)
 					return this.values[index];
 			},
@@ -1109,7 +1113,8 @@
 			 * @param {*} value
 			 * @return {void}
 			 */
-			set: function(key, value) {
+			set: function(key, value)
+			{
 				if ((index = __find__(this.keys, key)) === -1) {
 					this.keys.push(key);
 					this.values.push(value);
@@ -1134,7 +1139,8 @@
 			 * @param {*} key
 			 * @return {Boolean}
 			 */
-			'delete': function(key) {
+			'delete': function(key)
+			{
 				if ((index = __find__(this.keys, key)) === -1)
 					return false;
 
@@ -1160,10 +1166,12 @@
 			 * @param {Object} [ context ] - Object to use as <this> when executing callback
 			 * @return {void}
 			 */
-			__iterator__: function(callback, context) {
+			__iterator__: function(callback, context)
+			{
 				for (var i = 0, length = this.size(); i < length; i++) {
 					if (i in this.keys && i in this.values)
-						callback.call(context, this.keys[i], this.values[i]);
+						if (callback.call(context, this.keys[i], this.values[i]) === false)
+							break;
 				}
 			}
 		});
@@ -1187,12 +1195,12 @@
 	 *
 	 * // Setting the values
 	 *
-	 * set.add(Array);
 	 * set.add(-0);
 	 * set.add(+0);
 	 * set.add('b');
 	 * set.add('a');
 	 * set.add('a');
+	 * set.add(Array);
 	 * set.add([]);
 	 * set.add(function() {});
 	 * set.add(NaN);
