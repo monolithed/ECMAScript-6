@@ -8,22 +8,19 @@
  * @date: Thu Nov 1 00:08:00 2011
  **/
 
-(function(__object__, __array__)
+void function(__object__, __array__, __global__)
 {
 	'use strict';
 
-	/** @inner */
-	var __global__ = this,
-
-	define = function(name)
+	var define = function(name)
 	{
-		var __own__ = __object__.hasOwnProperty,
+		var __own__ = __object__.hasOwnProperty;
 
-		set = function(name, value, descriptor)
+		if (__own__.call(this, name))
+			return 0;
+
+		var set = function(name, value, descriptor)
 		{
-			if (__own__.call(this, name))
-				return 0;
-
 			if (Object.defineProperty)
 			{
 				Object.defineProperty(this, name, descriptor || {
@@ -33,9 +30,8 @@
 					writable:     true
 				});
 			}
-			else
-				this[name] = value;
-		}
+			else this[name] = value;
+		};
 
 		if (__object__.toString.call(name) === '[object Object]')
 		{
@@ -44,8 +40,7 @@
 					set.call(this, key, name[key]);
 			}
 		}
-		else
-			set.apply(this, __array__.slice.call(arguments));
+		else set.apply(this, arguments);
 	};
 
 
@@ -1305,5 +1300,7 @@
 			}
 		});
 	});
-
-}(Object.prototype, Array.prototype));
+}
+(Object.prototype, Array.prototype, function() {
+	return this;
+}());
