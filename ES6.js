@@ -142,7 +142,19 @@ void function(__object__, __array__, __global__)
 		if ((count |= 0 ) <= 0)
 			throw new RangeError();
 
-		return new Array(count + 1).join(this);
+		var result = '',
+			self = this;
+
+		while (count)
+		{
+			if (count & 1)
+				result += self;
+
+			if (count >>= 1)
+				self += self;
+		}
+
+		return result;
 	});
 
 
