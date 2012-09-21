@@ -2,7 +2,7 @@
 	"author": "Alexander Guinness <monolithed@gmail.com> (https://github.com/monolithed)",
 	"name": "es6",
 	"title": "ECMAScript 6 polyfill",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Shim to provide ECMAScript 6 Harmony implementation",
 	"keywords": ["ecmascript", "harmony", "shim", "polyfill", "collections", "data structures", "array", "string", "object", "number"],
 
