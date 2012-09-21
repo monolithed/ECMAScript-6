@@ -168,10 +168,11 @@ void function(__object__, __array__, __global__)
 	 *
 	 * @example:
 	 *
-	 * 'Hello'.startsWith('He') // true
+	 * 'Foo'.startsWith('F')     // true
+	 * 'Foo'.startsWith('o', 1); // true
 	**/
 	define.call(String.prototype, 'startsWith', function(value, position) {
-		return this.indexOf(value, position | 0) === 0;
+		return this.indexOf(value, position |= 0) === position;
 	});
 
 
