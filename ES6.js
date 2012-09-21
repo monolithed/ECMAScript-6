@@ -3,7 +3,7 @@
 /**
  * Implementation of ECMAScript 6 (Draft)
  * @author: Alexander Guinness
- * @version: 0.0.2
+ * @version: 0.0.4
  * license: MIT
  * @date: Thu Nov 1 00:08:00 2011
  **/
@@ -188,8 +188,7 @@ void function(__object__, __array__, __global__)
 	 *
 	 * Hello'.endsWith('lo') // true
 	**/
-	define.call(String.prototype, 'endsWith', function(value, position)
-	{
+	define.call(String.prototype, 'endsWith', function(value, position) {
 		return this.lastIndexOf(value, position) === (position >= 0 ? position | 0 : this.length - 1);
 	});
 
