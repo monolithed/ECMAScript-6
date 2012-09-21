@@ -188,14 +188,9 @@ void function(__object__, __array__, __global__)
 	 *
 	 * Hello'.endsWith('lo') // true
 	**/
-	define.call(String.prototype, 'endsWith', function(value, index)
+	define.call(String.prototype, 'endsWith', function(value, position)
 	{
-		var size = this.length >>> 0;
-
-		value = value.toString();
-		index = this.lastIndexOf(value, index || size);
-
-		return index >= 0 && index === size - value.length;
+		return this.lastIndexOf(value, position) === (position >= 0 ? position | 0 : this.length - 1);
 	});
 
 
