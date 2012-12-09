@@ -163,7 +163,7 @@ require('./ES6.js');
 #### Client-side including
 
 ```html
-<script src="./ES6.js" type="text/javascript"></script>
+<script src="./ES6.js"></script>
 ```
 
 
