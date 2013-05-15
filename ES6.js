@@ -272,37 +272,16 @@ void function(__object__, __array__, __global__)
 	 *
 	 * 3.
 	 * Array.from('foo'); // ['f', 'o', 'o'];
+	 *
+	 * Array.from('foo', funtion(value) {
+	 *     console.log(value) // ['f', 'o', 'o'];
+	 * });
 	**/
-	define.call(Array, 'from', function(object)
+	define.call(Array, 'from', function(object, callback, context)
 	{
-		if (__array__.map) {
-			return __array__.map.call(object, function(item) {
-				return item;
-			});
-		}
-		else {
-			var array = [],
-				i = object.length;
-
-			while (i--)
-			{
-				if (!(i in object))
-					continue;
-
-				if (Object.defineProperty)
-				{
-					Object.defineProperty(array, i, {
-						value: object[i],
-						configurable: true,
-						enumerable: true,
-						writable: true
-					});
-				}
-				else
-					array.unshift(object[i]);
-			}
-			return array;
-		}
+		return __array__.map.call(object, typeof callback == 'function' ? callback : function(item) {
+			return item;
+		}, context);
 	});
 
 

@@ -57,6 +57,56 @@ void function(__is__)
 			.exec(function() {
 				return Array.from(arguments);
 		}(0, 1), [0, 1].toString()).done();
-	});
+	})
+
+	.test('Array.from: [ callback [ value ] ]', function()
+	{
+		this
+			.exec(Array.from('12', function(value) {
+				return value;
+			}), '1,2').done();
+	})
+
+	.test('Array.from: [ callback [ index ] ]', function()
+	{
+		this
+			.exec(Array.from('12', function(value, index) {
+				return index;
+			}), '0,1').done();
+	})
+
+	.test('Array.from: [ callback [ object ] ]', function()
+	{
+		this
+			.exec(Array.from('12', function(value, index, object) {
+				return object;
+			}), '12,12').done();
+	})
+
+	.test('Array.from: [ callback [ value, index ] ]', function()
+	{
+		this
+			.exec(Array.from('12', function(value, index) {
+				return value + index;
+			}), '10,21').done();
+	})
+
+	.test('Array.from: [ callback [ value, index, object ] ]', function()
+	{
+		this
+			.exec(Array.from('12', function(value, index, object) {
+				return value + index + object;
+			}), '1012,2112').done();
+	})
+
+	.test('Array.from: [callback, context ]', function()
+	{
+		var object = {0: 1, 1: 2};
+
+		this
+			.exec(Array.from('01', function(value) {
+				return this[value];
+			}, object), '1,2').done();
+	})
 
 }(Object.prototype.toString);
