@@ -279,6 +279,9 @@ void function(__object__, __array__, __global__)
 	**/
 	define.call(Array, 'from', function(object, callback, context)
 	{
+		if (!Object(object).length)
+			return [];
+
 		return __array__.map.call(object, typeof callback == 'function' ? callback : function(item) {
 			return item;
 		}, context);

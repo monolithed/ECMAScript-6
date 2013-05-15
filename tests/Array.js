@@ -13,6 +13,10 @@ void function(__is__)
 	 Array.of
 	*/
 
+	var isEmptyArray = function(array) {
+		return Object.prototype.toString.call(array) == '[object Array]' && !array.length;
+	};
+
 	new Suitest('Array.of')
 
 	.test('Array.of: returns Array', function()
@@ -107,6 +111,40 @@ void function(__is__)
 			.exec(Array.from('01', function(value) {
 				return this[value];
 			}, object), '1,2').done();
+	})
+
+	.test('Array.from: [callback, context ]', function()
+	{
+		var object = {0: 1, 1: 2};
+
+		this
+			.exec(Array.from('01', function(value) {
+				return this[value];
+			}, object), '1,2').done();
+	})
+
+	.test('Array.from: empty string value', function()
+	{
+		this
+			.exec(isEmptyArray(Array.from(''))).done();
+	})
+
+	.test('Array.from: Boolean', function()
+	{
+		this
+			.exec(isEmptyArray(Array.from(true))).done();
+	})
+
+	.test('Array.from: Object', function()
+	{
+		this
+			.exec(isEmptyArray(Array.from({}))).done();
+	})
+
+	.test('Array.from: Array-like object', function()
+	{
+		this
+			.exec(Array.from({0: 1, 1: 2, length: 2}).toString(), '1,2').done();
 	})
 
 }(Object.prototype.toString);
