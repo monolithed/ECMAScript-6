@@ -42,18 +42,27 @@ ECMAScript 6 Harmony polyfil
 
 ## Object
 
-* **Object.getOwnPropertyDescriptors**<br />
+* **Object.getOwnPropertyDescriptors (proposal)**<br />
 
-* **Object.getPropertyDescriptor**<br />
+* **Object.getPropertyDescriptor (proposal)**<br />
 
-* **Object.getPropertyNames**<br />
-
-* **Object.is**<br />
-
-* **Object.isnt**<br />
+* **Object.getPropertyNames (proposal)**<br />
 
 * **Object.isObject**<br />
 *ECMA-262 6th Edition, 15.2.3.15*<br />
+
+* **Object.getOwnPropertyKeys**<br />
+*ECMA-262 6th Edition, 15.2.3.15*<br />
+
+* **Object.is**<br />
+*ECMA-262 6th Edition, 15.2.3.16*<br />
+
+* **Object.assign**<br />
+*ECMA-262 6th Edition, 15.2.3.17*<br />
+
+* **Object.mixin**<br />
+*ECMA-262 6th Edition, 15.2.3.18*<br />
+
 
 ## Number
 
@@ -128,6 +137,14 @@ ECMAScript 6 Harmony polyfil
 
 * **Math.cbrt**<br />
 *ECMA-262 6th Edition, 15.8.2.32*<br />
+
+
+
+## TODO
+
+* *String.prototype.normalize*<br />
+* *MapIterator.prototype*<br />
+* *RegeExp.prototype...*<br />
 
 
 ## Installation

@@ -4,7 +4,7 @@
  * Implementation of ECMAScript 6 (Draft)
  * @requires: ECMAScript 5
  * @author:   Alexander Guinness
- * @version:  0.0.5
+ * @version:  0.0.6
  * @license:  MIT
  * @date:     Thu Nov 1 00:08:00 2011
  **/
@@ -51,11 +51,12 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * String.fromCodePoint
+	 * @edition ECMA-262 6th Edition, 15.5.3.3
+	 *
 	 * @param {Number | String} [...codePoint] -  code points
 	 * @return {String} Return the string value whose elements are, in order, the elements
-	 * in the List elements. If length is 0, the empty string is returned.
+	 * in the List elements. If length is 0, the empty string is returned.	 *
 	 * @throws {RangeError}
-	 * @edition ECMA-262 6th Edition, 15.5.3.3
 	 *
 	 * @example:
 	 *
@@ -88,6 +89,8 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * String.prototype.codePointAt
+	 * @edition ECMA-262 6th Edition, 15.5.4.5
+	 *
 	 * @param {Number | String} index - position
 	 * @return {Number} Number (a nonnegative integer less than 1114112)
 	 * that is the UTF-16 encode code point value starting at the string element at position (index)
@@ -95,7 +98,6 @@ void function(__object__, __array__, __global__)
 	 * If there is no element at that position, the result is NaN.
 	 * If a valid UTF-16 sudsarrogate pair does not begin at position,
 	 * the result is the code unit at position (including code points above 0xFFFF).
-	 * @edition ECMA-262 6th Edition, 15.5.4.5
 	 *
 	 * @example:
 	 *
@@ -125,11 +127,12 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * String.prototype.repeat
+	 * @edition ECMA-262 6th Edition, 15.5.4.21
+	 *
 	 * Creates a String consisting of the string elements of this object (converted to String) repeated <count> time
 	 * @param {Number} index - position
 	 * @throws {RangeError}
 	 * @return {String}
-	 * @edition ECMA-262 6th Edition, 15.5.4.21
 	 *
 	 * @example:
 	 *
@@ -158,11 +161,12 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * String.prototype.startsWith
+	 * @edition ECMA-262 6th Edition, 15.5.4.22
+	 *
 	 * Determines whether the beginning of the string instance matches a specified string.
 	 * @param {*} value
 	 * @param {Number | String} [ index ]
 	 * @return {Boolean}
-	 * @edition ECMA-262 6th Edition, 15.5.4.22
 	 *
 	 * @example:
 	 *
@@ -176,11 +180,12 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * String.prototype.endsWith
+	 * @edition ECMA-262 6th Edition, 15.5.4.23
+	 *
 	 * Determines whether the end of the string instance matches a specified string
 	 * @param {Number | String} value
 	 * @param {Number} [ index ]
 	 * @return {Boolean}
-	 * @edition ECMA-262 6th Edition, 15.5.4.23
 	 *
 	 * @example:
 	 *
@@ -193,11 +198,12 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * String.prototype.contains
+	 * @edition ECMA-262 6th Edition, 15.5.4.24
+	 *
 	 * Returns a value indicating whether the specified String object occurs within this string.
 	 * @param {Number | String} value
 	 * @param {Number} [ index ]
 	 * @return {Boolean}
-	 * @edition ECMA-262 6th Edition, 15.5.4.24
 	 *
 	 * @example:
 	 *
@@ -210,10 +216,11 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * String.prototype.toArray
+	 * @edition ECMA-262 6th Edition, 15.5.4.25
+	 *
 	 * Creates an array from the specified String object
 	 * @return {Array} Returns an Array object with elements corresponding to
 	 * the characters of this object (converted to a String).
-	 * @edition ECMA-262 6th Edition, 15.5.4.25
 	 *
 	 * @example:
 	 *
@@ -232,9 +239,10 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Array.of
+	 * @edition ECMA-262 6th Edition, 15.4.3.3
+	 *
 	 * @param {*} object - Variable number of arguments
 	 * @return {Array}
-	 * @edition ECMA-262 6th Edition, 15.4.3.3
 	 *
 	 * @example:
 	 *
@@ -246,12 +254,12 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Array.from
+	 * @edition ECMA-262 6th Edition, 15.4.3.4
+	 *
 	 * @param {Object} object - array-like object.
 	 * Generic Array-like objects has indexed access and a valid length property,
 	 * but none of the array methods.
-	 *
 	 * @return {Array}
-	 * @edition ECMA-262 6th Edition, 15.4.3.4
 	 *
 	 * @example:
 	 *
@@ -293,10 +301,11 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Object.getOwnPropertyDescriptors
+	 * @edition proposal
+	 *
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
 	 * @param {Object} object
 	 * Object.getOwnPropertyDescriptor, Array.prototype.forEach
-	 * @edition proposal
 	 * @throws {TypeError}
 	 * @return {Object}
 	 *
@@ -357,6 +366,8 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Object.getPropertyDescriptor
+	 * @edition proposal
+	 *
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
 	 * @param {Object} object
 	 * @param {String} name - The name of the property
@@ -395,6 +406,7 @@ void function(__object__, __array__, __global__)
 	 * Returns an array of all the names of the properties
 	 * @param {Object} object
 	 * @throws {TypeError}
+	 * @edition proposal
 	 * @return {Array}
 	 *
 	 * @example:
@@ -432,10 +444,41 @@ void function(__object__, __array__, __global__)
 		return properies;
 	});
 
+
+	/**
+	 * Object.isObject
+	 * @param {Object}
+	 * @return {Boolean}
+	 * @edition ECMA-262 6th Edition, 15.2.3.15
+	 *
+	 * @example:
+	 *
+	 * Object.isObject({}); // true
+	**/
+	define.call(Object, 'isObject', function(object) {
+		return __object__.toString.call(object) === '[object Object]';
+	});
+
+
+	/**
+	 * Object.getOwnPropertyKeys
+	 * @edition ECMA-262 6th Edition, 15.2.3.15
+	 *
+	 * @param {Object} - object
+	 * @return {Array}
+	 *
+	**/
+	define.call(Object, 'getOwnPropertyKeys', function(object)
+	{
+		return Object.keys(object);
+	});
+
 	/**
 	 * Object.is
 	 * The internal comparison abstract operation SameValue(x, y),
 	 * where x and y are ECMAScript language values, produces true or false (ECMAScript 5 9.12).
+	 * @edition ECMA-262 6th Edition, 15.2.3.16
+	 *
 	 * @param {*} - first generic value for egal comparison
 	 * @param {*} - second generic value for egal comparison
 	 * @return {Boolean}
@@ -458,33 +501,42 @@ void function(__object__, __array__, __global__)
 	});
 
 	/**
-	 * Object.is
-	 * Opposed to the Object.is
-	 * @param {*} - first generic value for egal comparison
-	 * @param {*} - second generic value for egal comparison
-	 * @requires Object.is
-	 * @return {Boolean}
+	 * Object.assign
+	 * @edition ECMA-262 6th Edition, 15.2.3.17
 	 *
-	 * @example:
+	 * @param {Object} - target, source
+	 * @return {Object}
 	 *
-	 * Object.isnt(0, 0) // false
 	**/
-	define.call(Object, 'isnt', function(x, y) {
-		return !Object.is(x, y);
+	define.call(Object, 'assign', function(target, source)
+	{
+		var keys = Object.keys(source);
+
+		keys.forEach(function(key) {
+			target[key] = source[key];
+		}, target);
+
+		return target;
 	});
 
 	/**
-	 * Object.isObject
-	 * @param {Object}
-	 * @return {Boolean}
-	 * @edition ECMA-262 6th Edition, 15.2.3.15
+	 * Object.mixin
+	 * @edition ECMA-262 6th Edition, 15.2.3.18
 	 *
-	 * @example:
+	 * @param {Object} - target, source
+	 * @return {Object}
 	 *
-	 * Object.isObject({}); // true
 	**/
-	define.call(Object, 'isObject', function(object) {
-		return __object__.toString.call(object) === '[object Object]';
+	define.call(Object, 'mixin', function(target, source)
+	{
+		var properties = Object.getOwnPropertyNames(source);
+
+		properties.forEach(function(property) {
+			Object.defineProperty(target, property,
+				Object.getOwnPropertyDescriptor(source, property));
+		}, target);
+
+		return target;
 	});
 
 
@@ -540,13 +592,14 @@ void function(__object__, __array__, __global__)
 	 * it is assumed to be 10 except when the number begins with the character pairs 0x or 0X,
 	 * in which case a radix of 16 is assumed. If radix is 16, the number may also optionally
 	 * begin with the character pairs 0x or 0X.
+	 * @edition ECMA-262 6th Edition, 15.7.3.8
+	 *
 	 * @param {String} - value
 	 * @param {Number} - radix
 	 * The radix parameter is used to specify which numeral system to be used,
 	 * for example, a radix of 16 (hexadecimal) indicates that the number in the string
 	 * should be parsed from a hexadecimal number to a decimal number.
 	 * @return {Number} Parses a string or integer and returns an integer.
-	 * @edition ECMA-262 6th Edition, 15.7.3.8
 	 *
 	 * @example:
 	 *
@@ -559,9 +612,10 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Number.parseFloat
+	 * @edition ECMA-262 6th Edition, 15.7.3.9
+	 *
 	 * @param {String} - value
 	 * @return {Number} Parses a string or integer and returns a floating point number.
-	 * @edition ECMA-262 6th Edition, 15.7.3.9
 	 *
 	 * @example:
 	 *
@@ -573,9 +627,10 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Number.isNaN
+	 * @edition ECMA-262 6th Edition, 15.7.3.10
+	 *
 	 * @param {Number} - value
 	 * @return {Boolean} Returns true if the supplied number is NaN, false otherwise;
-	 * @edition ECMA-262 6th Edition, 15.7.3.10
 	 *
 	 * @example:
 	 *
@@ -589,9 +644,10 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Number.isFinite
+	 * @edition ECMA-262 6th Edition, 15.7.3.11
+	 *
 	 * @param {Number} - value
 	 * @return {Boolean} Returns false if the supplied number is NaN, Infinity or -Infinity;
-	 * @edition ECMA-262 6th Edition, 15.7.3.11
 	 *
 	 * @example:
 	 *
@@ -607,10 +663,11 @@ void function(__object__, __array__, __global__)
 	 * Number.isInteger
 	 * Add a toInteger property be to the Number constructor, for converting values to IEEE-754
 	 * double precision integers, exactly as ECMA-262’s ToInteger internal method.
+	 * @edition ECMA-262 6th Edition, 15.7.3.12
+	 *
 	 * @param {Number} - value
 	 * @requires Number.MAX_INTEGER
 	 * @return {Boolean}
-	 * @edition ECMA-262 6th Edition, 15.7.3.12
 	 *
 	 * @example:
 	 *
@@ -628,9 +685,10 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Number.toInteger
+	 * @edition ECMA-262 6th Edition, 15.7.3.13
+	 *
 	 * @param {String} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.7.3.13
 	 *
 	 * @example:
 	 *
@@ -652,6 +710,7 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Number.prototype.clz
+	 * @edition ECMA-262 6th Edition, 15.7.3.14
 	 *
 	 * @description
 	 * The count leading zeros (clz) operation can be used to efficiently implement normalization,
@@ -669,7 +728,6 @@ void function(__object__, __array__, __global__)
 	 *
 	 * @return {Number} Count leading zeroes operation;
 	 * @requires Number.isFinite
-	 * @edition ECMA-262 6th Edition, 15.7.3.14
 	 *
 	 * @example:
 	 *
@@ -707,9 +765,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.log10
 	 * Returns an implementation-dependent approximation to the base 10 logarithm of <value>
+	 *
+	 * @edition ECMA-262 6th Edition, 15.8.2.19
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.19
 	 *
 	 * @example:
 	 *
@@ -723,9 +782,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.log2
 	 * Returns an implementation-dependent approximation to the base 2 logarithm of <value>
+	 * @edition ECMA-262 6th Edition, 15.8.2.20
+	 *
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.20
 	 *
 	 * @example:
 	 *
@@ -740,9 +800,10 @@ void function(__object__, __array__, __global__)
 	 * Math.log1p
 	 * Returns an implementation-dependent approximation to the natural logarithm of 1 + <value>.
 	 * The result is computed in a way that is accurate even when the value of <value> is close to zero.
+	 *
+	 * @edition ECMA-262 6th Edition, 15.8.2.21
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.21
 	 *
 	 * @example:
 	 *
@@ -758,10 +819,11 @@ void function(__object__, __array__, __global__)
 	 * Returns an implementation-dependent approximation to subtracting 1
 	 * from the exponential function of <value> The result is computed in a way
 	 * that is accurate even when the <value> of value is close 0.
+	 * @edition ECMA-262 6th Edition, 15.8.2.22
+	 *
 	 * @param {Number} - value
 	 * @requires Object.is
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.22
 	 *
 	 * @example:
 	 *
@@ -779,10 +841,11 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.cosh
 	 * Returns an implementation-dependent approximation to the hyperbolic cosine of <value>
+	 *
+	 * @edition ECMA-262 6th Edition, 15.8.2.23
 	 * @param {Number} - value
 	 * @requires Object.is
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.23
 	 *
 	 * @example:
 	 *
@@ -799,10 +862,11 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Math.sinh
+	 * @edition ECMA-262 6th Edition, 15.8.2.24
+	 *
 	 * Returns an implementation-dependent approximation to the hyperbolic sine of <value>
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.24
 	 *
 	 * @example:
 	 *
@@ -820,9 +884,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.tanh
 	 * Returns an implementation-dependent approximation to the hyperbolic tangent of <value>
+	 *
+	 * @edition ECMA-262 6th Edition, 15.8.2.25
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.25
 	 *
 	 * @example:
 	 *
@@ -843,9 +908,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.acosh
 	 * Returns an implementation-dependent approximation to the inverse hyperbolic cosine of <value>
+	 * @edition ECMA-262 6th Edition, 15.8.2.26
+	 *
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.26
 	 *
 	 * @example:
 	 *
@@ -859,9 +925,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.asinh
 	 * Returns an implementation-dependent approximation to the inverse hyperbolic sine of <value>
+	 * @edition ECMA-262 6th Edition, 15.8.2.27
+
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.27
 	 *
 	 * @example:
 	 *
@@ -879,9 +946,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.atanh
 	 * Returns an implementation-dependent approximation to the inverse hyperbolic tangent of <value>
+	 * @edition ECMA-262 6th Edition, 15.8.2.28
+	 *
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.28
 	 *
 	 * @example:
 	 *
@@ -896,9 +964,10 @@ void function(__object__, __array__, __global__)
 	 * Math.hypot
 	 * Given two or three arguments, hypot returns an implementation-dependent approximation
 	 * of the square root of the sum of squares of its arguments.
+	 * @edition ECMA-262 6th Edition, 15.8.2.29
+	 *
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.29
 	 *
 	 * @example:
 	 *
@@ -920,10 +989,11 @@ void function(__object__, __array__, __global__)
 	 * Math.trunc
 	 * Returns the integral part of the number <value>, removing any fractional digits.
 	 * If <value> is already an integer, the result is <value>
+	 * @edition ECMA-262 6th Edition, 15.8.2.30
+	 *
 	 * @param {Number} - value
 	 * @requires Number.isFinite
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.30
 	 *
 	 * @example:
 	 *
@@ -937,9 +1007,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.sign
 	 * Returns the sign of the <value>, indicating whether <value> is positive, negative or zero
+	 * @edition ECMA-262 6th Edition, 15.8.2.31
+	 *
 	 * @param {Number} value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.31
 	 *
 	 * @example:
 	 *
@@ -956,9 +1027,10 @@ void function(__object__, __array__, __global__)
 	/**
 	 * Math.cbrt
 	 * Returns an implementation-dependent approximation to the cube root of <value>
+	 * @edition ECMA-262 6th Edition, 15.8.2.32
+	 *
 	 * @param {Number} - value
 	 * @return {Number}
-	 * @edition ECMA-262 6th Edition, 15.8.2.32
 	 *
 	 * @example:
 	 *
@@ -997,6 +1069,10 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Map
+	 * @edition ECMA-262 6th Edition, 5.14
+	 *
+	 * NOTE: Need more compatible with Rev 14!
+	 *
 	 * @class
 	 * @memberOf global
 	 *
@@ -1150,6 +1226,9 @@ void function(__object__, __array__, __global__)
 
 	/**
 	 * Set
+	 * @edition ECMA-262 6th Edition, 5.16
+	 * NOTE: Need more compatible with Rev 14!
+	 *
 	 * @class
 	 * @memberOf global
 	 *
