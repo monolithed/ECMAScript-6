@@ -169,6 +169,8 @@ require('./ES6.js');
 
 ## Information
 
+NOTE: requires ECMAScript 5! <br />
+<br />
 [ECMAScript 6 compatibility table] (http://kangax.github.com/es5-compat-table/es6/) <br />
 [Historical records of working draft of the ECMA-262 6th specification] (http://wiki.ecmascript.org/doku.php?id=harmony:specification_drafts) <br />
 [Proposals of ECMA-262 6th specification] (http://wiki.ecmascript.org/doku.php?id=harmony:proposals) <br />

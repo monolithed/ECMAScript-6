@@ -2,10 +2,11 @@
 
 /**
  * Implementation of ECMAScript 6 (Draft)
- * @author: Alexander Guinness
- * @version: 0.0.5
- * license: MIT
- * @date: Thu Nov 1 00:08:00 2011
+ * @requires: ECMAScript 5
+ * @author:   Alexander Guinness
+ * @version:  0.0.5
+ * @license:  MIT
+ * @date:     Thu Nov 1 00:08:00 2011
  **/
 
 void function(__object__, __array__, __global__)
@@ -21,16 +22,12 @@ void function(__object__, __array__, __global__)
 
 		var set = function(name, value, descriptor)
 		{
-			if (Object.defineProperty)
-			{
-				Object.defineProperty(this, name, descriptor || {
-					value: value,
-					configurable: true,
-					enumerable:   false,
-					writable:     true
-				});
-			}
-			else this[name] = value;
+			Object.defineProperty(this, name, descriptor || {
+				value: value,
+				configurable: true,
+				enumerable:   false,
+				writable:     true
+			});
 		};
 
 		if (__object__.toString.call(name) === '[object Object]')
@@ -40,7 +37,8 @@ void function(__object__, __array__, __global__)
 					set.call(this, key, name[key]);
 			}
 		}
-		else set.apply(this, arguments);
+		else
+			set.apply(this, arguments);
 	};
 
 
@@ -252,7 +250,6 @@ void function(__object__, __array__, __global__)
 	 * Generic Array-like objects has indexed access and a valid length property,
 	 * but none of the array methods.
 	 *
-	 * @requires Array.prototype.map, Object.defineProperty (optional)
 	 * @return {Array}
 	 * @edition ECMA-262 6th Edition, 15.4.3.4
 	 *
@@ -298,8 +295,8 @@ void function(__object__, __array__, __global__)
 	 * Object.getOwnPropertyDescriptors
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
 	 * @param {Object} object
-	 * @requires Object.defineProperty, Object.getOwnPropertyNames,
 	 * Object.getOwnPropertyDescriptor, Array.prototype.forEach
+	 * @edition proposal
 	 * @throws {TypeError}
 	 * @return {Object}
 	 *
@@ -342,9 +339,6 @@ void function(__object__, __array__, __global__)
 		if (__object__.toString.call(object) !== '[object Object]')
 			throw new TypeError('Object.getOwnPropertyDescriptors: ' + object + ' is not an Object!');
 
-		if (!Object.getOwnPropertyNames || !Object.getOwnPropertyDescriptor || !Object.defineProperty)
-			return object;
-
 		var descriptors = {};
 
 		__array__.forEach.call(Object.getOwnPropertyNames(object), function (property)
@@ -366,7 +360,6 @@ void function(__object__, __array__, __global__)
 	 * Returns a property descriptor of the specified object, including object’s prototype chain
 	 * @param {Object} object
 	 * @param {String} name - The name of the property
-	 * @requires Object.getOwnPropertyDescriptor, Object.getPrototypeOf
 	 * @throws {TypeError}
 	 * @return {Object}
 	 *
@@ -386,9 +379,6 @@ void function(__object__, __array__, __global__)
 		if (__object__.toString.call(object) !== '[object Object]')
 			throw new TypeError('Object.getPropertyDescriptor: ' + object + ' is not an Object!');
 
-		if (!Object.getOwnPropertyDescriptor || !Object.getPrototypeOf)
-			return object;
-
 		var descriptor = Object.getOwnPropertyDescriptor(object, name),
 		__proto__ = Object.getPrototypeOf(object);
 
@@ -404,7 +394,6 @@ void function(__object__, __array__, __global__)
 	 * Object.getPropertyNames
 	 * Returns an array of all the names of the properties
 	 * @param {Object} object
-	 * @requires Object.getOwnPropertyNames, Object.getPrototypeOf, Array.prototype.forEach
 	 * @throws {TypeError}
 	 * @return {Array}
 	 *
@@ -426,9 +415,6 @@ void function(__object__, __array__, __global__)
 	{
 		if (__object__.toString.call(object) !== '[object Object]')
 			throw new TypeError('Object.getPropertyNames: ' + object + ' is not an Object!');
-
-		if (!Object.getOwnPropertyNames || !Object.getPrototypeOf)
-			return object;
 
 		var properies = Object.getOwnPropertyNames(object),
 			__proto__ = Object.getPrototypeOf(object);
