@@ -3,7 +3,7 @@
 /**
  * Implementation of ECMAScript 6 (Draft)
  * @author: Alexander Guinness
- * @version: 0.0.4
+ * @version: 0.0.5
  * license: MIT
  * @date: Thu Nov 1 00:08:00 2011
  **/
@@ -273,7 +273,7 @@ void function(__object__, __array__, __global__)
 	 * 3.
 	 * Array.from('foo'); // ['f', 'o', 'o'];
 	 *
-	 * Array.from('foo', funtion(value) {
+	 * Array.from('foo', funtion(value, index, object) {
 	 *     console.log(value) // ['f', 'o', 'o'];
 	 * });
 	**/

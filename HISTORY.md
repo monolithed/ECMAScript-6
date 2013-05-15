@@ -1,3 +1,7 @@
+# 0.0.5 / 2013-05-16
+* [Enhancement] Array.from now takes an optional map function.
+ES6 Rev 14 (March 8, 2013 Draft)
+
 # 0.0.4 / 2012-09-20
 * [Critical] Fixed String.prototype.startsWith, String.prototype.endsWith
 
