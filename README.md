@@ -42,12 +42,6 @@ ECMAScript 6 Harmony polyfil
 
 ## Object
 
-* **Object.getOwnPropertyDescriptors (proposal)**<br />
-
-* **Object.getPropertyDescriptor (proposal)**<br />
-
-* **Object.getPropertyNames (proposal)**<br />
-
 * **Object.isObject**<br />
 *ECMA-262 6th Edition, 15.2.3.15*<br />
 
@@ -138,6 +132,16 @@ ECMAScript 6 Harmony polyfil
 * **Math.cbrt**<br />
 *ECMA-262 6th Edition, 15.8.2.32*<br />
 
+
+## Proposals
+
+* **Object.getOwnPropertyDescriptors**<br />
+
+* **Object.getPropertyDescriptor**<br />
+
+* **Object.getPropertyNames**<br />
+
+* **Object.isnt**<br />
 
 
 ## TODO

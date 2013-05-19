@@ -13,10 +13,9 @@ new Suitest('Map')
 
 .test('Map.set: -0', function()
 {
-	map.set(-0,  0);
+	map.set(-0, 0);
 
 	this
-		.describe("map.set(-0, 0)")
 		.exec(map.get(-0), -0)
 		.done();
 })
@@ -26,7 +25,6 @@ new Suitest('Map')
 	map.set(+0,  1);
 
 	this
-		.describe("map.get(+0), 1")
 		.exec(map.get(+0), 1)
 		.done();
 })
@@ -117,10 +115,10 @@ new Suitest('Map')
 	map.size();
 
 	this
-		.describe("map.size()")
 		.exec(map.size(), 7)
 		.done();
 })
+
 
 .test('Map.set: __iterator__', function()
 {
@@ -133,6 +131,16 @@ new Suitest('Map')
 	this
 		.describe("map.size()")
 		.exec(map.size(), count)
+		.done();
+})
+
+
+.test('Map.set: .clear()', function()
+{
+	map.clear();
+
+	this
+		.exec(map.size(), 0)
 		.done();
 })
 
