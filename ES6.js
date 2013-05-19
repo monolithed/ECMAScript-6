@@ -4,7 +4,7 @@
  * Implementation of ECMAScript 6 (Draft)
  * @requires: ECMAScript 5
  * @author:   Alexander Guinness <monolithed@gmail.com>
- * @version:  0.0.6
+ * @version:  0.0.7
  * @license:  MIT
  * @date:     Thu Nov 1 00:08:00 2011
  **/

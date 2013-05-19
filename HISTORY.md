@@ -1,3 +1,6 @@
+# 0.0.7 / 2013-05-19
+* [Features] added proposals. <br />
+
 # 0.0.6 / 2013-05-16
 * [Enhancement] added Object.getOwnPropertyKeys, Object.mixin, Object.assign. <br />
 ES6 Rev 14 (March 8, 2013 Draft)
