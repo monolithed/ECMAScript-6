@@ -1,8 +1,11 @@
+# 0.0.9 / 2013-06-02
+* [Enhancement] Math.imul. <br />
+
 # 0.0.8 / 2013-06-02
 * [Critical] fixed String.prototype.startsWith, String.prototype.endsWith. <br />
 
 # 0.0.7 / 2013-05-19
-* [Features] added proposals. <br />
+* [Enhancement] added proposals. <br />
 
 # 0.0.6 / 2013-05-16
 * [Enhancement] added Object.getOwnPropertyKeys, Object.mixin, Object.assign. <br />

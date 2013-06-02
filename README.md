@@ -132,6 +132,9 @@ ECMAScript 6 Harmony polyfil
 * **Math.cbrt**<br />
 *ECMA-262 6th Edition, 15.8.2.32*<br />
 
+* **Math.imul**<br />
+*ECMA-262 6th Edition, 15.8.2.33*<br />
+
 
 ## Proposals
 

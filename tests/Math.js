@@ -7,6 +7,7 @@ require('./suitest.js');
  * ------------------------------------------------------------
 **/
 
+
 /*
  Math.log10
 */
@@ -61,6 +62,7 @@ new Suitest('Math.log10')
 		.exec(Math.log10(Infinity), Infinity)
 		.done();
 });
+
 
 /*
  Math.log2
@@ -117,6 +119,7 @@ new Suitest('Math.log2')
 		.done();
 });
 
+
 /*
  Math.log1p
 */
@@ -165,6 +168,7 @@ new Suitest('Math.log1p')
 		.done();
 });
 
+
 /*
  Math.expm1
 */
@@ -205,6 +209,7 @@ new Suitest('Math.expm1')
 		.exec(Math.expm1(-Infinity), -1)
 		.done();
 });
+
 
 /*
  Math.cosh
@@ -247,6 +252,7 @@ new Suitest('Math.cosh')
 		.done();
 });
 
+
 /*
  Math.sinh
 */
@@ -287,6 +293,7 @@ new Suitest('Math.sinh')
 		.exec(Math.sinh(-Infinity), -Infinity)
 		.done();
 });
+
 
 /*
  Math.tanh
@@ -343,6 +350,7 @@ new Suitest('Math.tanh')
 		.done();
 });
 
+
 /*
  Math.acosh
 */
@@ -383,6 +391,7 @@ new Suitest('Math.acosh')
 		.exec(Math.ceil(Math.acosh(10)), 3)
 		.done();
 });
+
 
 /*
  Math.asinh
@@ -495,6 +504,7 @@ new Suitest('Math.atanh')
 		.done();
 });
 
+
 /*
  Math.hypot
 */
@@ -535,6 +545,7 @@ new Suitest('Math.hypot')
 		.exec(Math.hypot(-0, -0), 0, 'eg')
 		.done();
 });
+
 
 /*
  Math.trunc
@@ -584,6 +595,7 @@ new Suitest('Math.trunc')
 		.done();
 });
 
+
 /*
  Math.trunc
 */
@@ -625,6 +637,7 @@ new Suitest('Math.sign')
 		.done();
 });
 
+
 /*
  Math.cbrt
 */
@@ -665,3 +678,354 @@ new Suitest('Math.cbrt')
 		.exec(Math.cbrt(-Infinity), -Infinity, 'eg')
 		.done();
 });
+
+
+/*
+ * Math.imul
+ * @see https://bugs.webkit.org/show_bug.cgi?id=115143
+ */
+
+new Suitest('Math.imul')
+
+.test('Math.imul: Math.imul(1, 0.5)', function()
+{
+	this
+		.exec(Math.imul(1, 0.5), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1, -0.5)', function()
+{
+	this
+		.exec(Math.imul(1, -0.5), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2, 1 << 30)', function()
+{
+	this
+		.exec(Math.imul(2, 1 << 30), -2147483648)
+		.done();
+})
+
+.test('Math.imul: Math.imul(4, 1 << 30)', function()
+{
+	this
+		.exec(Math.imul(4, 1 << 30), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1, NaN)', function()
+{
+	this
+		.exec(Math.imul(1, NaN), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1, Infinity)', function()
+{
+	this
+		.exec(Math.imul(1, Infinity), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(0.5, 1)', function()
+{
+	this
+		.exec(Math.imul(0.5, 1), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-0.5, 1)', function()
+{
+	this
+		.exec(Math.imul(-0.5, 1), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1 << 30, 2)', function()
+{
+	this
+		.exec(Math.imul(1 << 30, 2), -2147483648)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1 << 30, 4)', function()
+{
+	this
+		.exec(Math.imul(1 << 30, 4), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(NaN, 1)', function()
+{
+	this
+		.exec(Math.imul(NaN, 1), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(Infinity, 1)', function()
+{
+	this
+		.exec(Math.imul(Infinity, 1), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(NaN, NaN, 2)', function()
+{
+	this
+		.exec(Math.imul(NaN, NaN, 2), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(Infinity, Infinity, 2)', function()
+{
+	this
+		.exec(Math.imul(Infinity, Infinity, 2), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(Infinity, -Infinity)', function()
+{
+	this
+		.exec(Math.imul(Infinity, -Infinity), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-Infinity, Infinity)', function()
+{
+	this
+		.exec(Math.imul(-Infinity, Infinity), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-Infinity, -Infinity)', function()
+{
+	this
+		.exec(Math.imul(-Infinity, -Infinity), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2, 2)', function()
+{
+	this
+		.exec(Math.imul(2, 2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, 2)', function()
+{
+	this
+		.exec(Math.imul(2.5, 2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, 2)', function()
+{
+	this
+		.exec(Math.imul(2.5, 2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2, 2.5)', function()
+{
+	this
+		.exec(Math.imul(2, 2.5), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, 2)', function()
+{
+	this
+		.exec(Math.imul(2.5, 2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, 2.5)', function()
+{
+	this
+		.exec(Math.imul(2.5, 2.5), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2, -2)', function()
+{
+	this
+		.exec(Math.imul(-2, -2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, -2)', function()
+{
+	this
+		.exec(Math.imul(-2.5, -2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, -2)', function()
+{
+	this
+		.exec(Math.imul(-2.5, -2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2, -2.5)', function()
+{
+	this
+		.exec(Math.imul(-2, -2.5), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, -2)', function()
+{
+	this
+		.exec(Math.imul(-2.5, -2), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, -2.5)', function()
+{
+	this
+		.exec(Math.imul(-2.5, -2.5), 4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2, 2)', function()
+{
+	this
+		.exec(Math.imul(-2, 2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, 2)', function()
+{
+	this
+		.exec(Math.imul(-2.5, 2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, 2)', function()
+{
+	this
+		.exec(Math.imul(-2.5, 2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2, 2.5)', function()
+{
+	this
+		.exec(Math.imul(-2, 2.5), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, 2)', function()
+{
+	this
+		.exec(Math.imul(-2.5, 2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(-2.5, 2.5)', function()
+{
+	this
+		.exec(Math.imul(-2.5, 2.5), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2, -2)', function()
+{
+	this
+		.exec(Math.imul(2, -2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, -2)', function()
+{
+	this
+		.exec(Math.imul(2.5, -2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, -2)', function()
+{
+	this
+		.exec(Math.imul(2.5, -2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2, -2.5)', function()
+{
+	this
+		.exec(Math.imul(2, -2.5), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, -2)', function()
+{
+	this
+		.exec(Math.imul(2.5, -2), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(2.5, -2.5)', function()
+{
+	this
+		.exec(Math.imul(2.5, -2.5), -4)
+		.done();
+})
+
+.test('Math.imul: Math.imul(NaN, 1)', function()
+{
+	this
+		.exec(Math.imul(NaN, 1), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(Infinity, 1)', function()
+{
+	this
+		.exec(Math.imul(Infinity, 1), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1e40, 1)', function()
+{
+	this
+		.exec(Math.imul(1e40, 1), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(0xffffffff, 5)', function()
+{
+	this
+		.exec(Math.imul(0xffffffff, 5), -5)
+		.done();
+})
+
+.test('Math.imul: Math.imul(0xfffffffe, 5)', function()
+{
+	this
+		.exec(Math.imul(0xfffffffe, 5), -10)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1, NaN)', function()
+{
+	this
+		.exec(Math.imul(1, NaN), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1, Infinity)', function()
+{
+	this
+		.exec(Math.imul(1, Infinity), 0)
+		.done();
+})
+
+.test('Math.imul: Math.imul(1, 1e40)', function()
+{
+	this
+		.exec(Math.imul(1, 1e40), 0)
+		.done();
+})

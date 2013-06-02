@@ -4,7 +4,7 @@
  * Implementation of ECMAScript 6 (Draft)
  * @requires: ECMAScript 5
  * @author:   Alexander Guinness <monolithed@gmail.com>
- * @version:  0.0.8
+ * @version:  0.0.9
  * @license:  MIT
  * @date:     Thu Nov 1 00:08:00 2011
  **/
@@ -917,6 +917,32 @@ void function(__object__, __array__, __global__)
 			return value;
 
 		return value > 0 ? Math.exp(Math.log(value) / 3) : -Math.exp(Math.log(-value) / 3);
+	});
+
+
+	/**
+	 * Math.imul
+	 * This operations returns the result of the C-like 32-bit multiplication of the two parameters.
+	 * @edition ECMA-262 6th Edition, 15.8.2.33
+	 * @see https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Math/imul
+	 *
+	 * @param {Number} - x
+	 * @param {Number} - y
+	 * @return {Number}
+	 *
+	 * @example:
+	 *
+	 * Math.imul(10); // 2.154434690031884
+	**/
+	define.call(Math, 'imul', function(x, y)
+	{
+		var xh = (x >>> 0x10) & 0xffff,
+			xl = x & 0xffff;
+
+		var yh = (y >>> 0x10) & 0xffff,
+			yl = y & 0xffff;
+
+		return ((xl * yl) + (((xh * yl + xl * yh) << 0x10) >>> 0) | 0);
 	});
 
 
