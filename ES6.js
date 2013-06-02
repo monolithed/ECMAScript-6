@@ -4,7 +4,7 @@
  * Implementation of ECMAScript 6 (Draft)
  * @requires: ECMAScript 5
  * @author:   Alexander Guinness <monolithed@gmail.com>
- * @version:  0.0.7
+ * @version:  0.0.8
  * @license:  MIT
  * @date:     Thu Nov 1 00:08:00 2011
  **/
@@ -173,8 +173,17 @@ void function(__object__, __array__, __global__)
 	 * 'Foo'.startsWith('F')     // true
 	 * 'Foo'.startsWith('o', 1); // true
 	**/
-	define.call(String.prototype, 'startsWith', function(value, position) {
-		return this.indexOf(value, position |= 0) === position;
+	define.call(String.prototype, 'startsWith', function(search, position) {
+		var length = this.length;
+
+		if (position > length) {
+			position = length;
+		}
+		else if (position < 0) {
+			position = 0;
+		}
+
+		return this.lastIndexOf(search, position |= 0) === position;
 	});
 
 
@@ -191,8 +200,19 @@ void function(__object__, __array__, __global__)
 	 *
 	 * Hello'.endsWith('lo') // true
 	**/
-	define.call(String.prototype, 'endsWith', function(value, position) {
-		return this.lastIndexOf(value, position) === (position >= 0 ? position | 0 : this.length - 1);
+	define.call(String.prototype, 'endsWith', function(search, position) {
+		var length = this.length;
+
+		if (position === undefined || position > length) {
+			position = length;
+		}
+		else if (position < 0) {
+			position = 0;
+		}
+
+		position -= String(search).length;
+
+		return position >= 0 && this.indexOf(search, position) === position;
 	});
 
 
