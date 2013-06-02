@@ -1,3 +1,6 @@
+# 0.0.8 / 2013-06-02
+* [Critical] fixed String.prototype.startsWith, String.prototype.endsWith. <br />
+
 # 0.0.7 / 2013-05-19
 * [Features] added proposals. <br />
 
