@@ -41,8 +41,8 @@ new Suitest('Number.parseInt')
 .test('Number.parseInt: E+2*', function()
 {
 	this
-		.describe("Number.parseInt(1000000000000000000000) is 1e+21")
-		.exec(1000000000000000000000, 1e+21)
+		.describe("Number.parseInt(1000000000000000000000) is 1")
+		.exec(Number.parseInt(1000000000000000000000), 1)
 		.done();
 })
 
@@ -136,7 +136,7 @@ new Suitest('Number.parseFloat')
 {
 	this
 		.describe("Number.parseFloat(1000000000000000000000) is 1e+21")
-		.exec(1000000000000000000000, 1e+21)
+		.exec(Number.parseFloat(1000000000000000000000), 1e+21)
 		.done();
 })
 

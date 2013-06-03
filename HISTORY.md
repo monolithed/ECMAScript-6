@@ -1,6 +1,8 @@
 # 0.0.10 / 2013-06-03
 * [Critical] Removed String.prototype.toArray, Object.isObject. <br />
-ES6 Rev 9 (July 8, 2012 Draft)
+ES6 Rev 9 (July 8, 2012 Draft) <br />
+
+* [Critical] Fixed tests for Number.parseInt, Number.parseFloat. <br />
 
 # 0.0.9 / 2013-06-02
 * [Enhancement] Math.imul. <br />
