@@ -12,6 +12,36 @@ require('./suitest.js');
 void function(__is__, object)
 {
 	/*
+	 Object.isObject
+	*/
+
+	new Suitest('Object.isObject')
+
+	.test('Object.isObject: null', function()
+	{
+		this
+			.describe('null is not object')
+			.exec(!Object.isObject(null))
+			.done();
+	})
+
+	.test('Object.isObject: object', function()
+	{
+		this
+			.describe('{} is object')
+			.exec(Object.isObject({}))
+			.done();
+	})
+
+	.test('Object.isObject: array', function()
+	{
+		this
+			.describe('[] is object')
+			.exec(!Object.isObject([]))
+			.done();
+	});
+
+	/*
 	 Object.getOwnPropertyDescriptors
 	*/
 
@@ -126,6 +156,29 @@ void function(__is__, object)
 		this
 			.describe('NaN is NaN')
 			.exec(!Object.isnt(NaN, NaN))
+			.done();
+	});
+
+
+	/*
+	String.prototype.toArray
+	*/
+
+	new Suitest('String.prototype.toArray')
+
+	.test('String.prototype.toArray: returns array', function()
+	{
+		this
+			.describe("'type of Hello'.toArray() is [object Array]")
+			.exec(Object.prototype.toString.call('Hello'.toArray()), '[object Array]')
+			.done();
+	})
+
+	.test('String.prototype.toArray', function()
+	{
+		this
+			.describe("'Hello'.toArray() is ['H', 'e', 'l', 'l', 'o']")
+			.exec('Hello'.toArray().toString(), ['H', 'e', 'l', 'l', 'o'].toString())
 			.done();
 	});
 

@@ -976,26 +976,3 @@ new Suitest('String.prototype.contains')
 		.exec(!'Hello'.contains('HE'))
 		.done();
 });
-
-/*
-String.prototype.toArray
-*/
-
-new Suitest('String.prototype.toArray')
-
-.test('String.prototype.toArray: returns array', function()
-{
-	this
-		.describe("'type of Hello'.toArray() is [object Array]")
-		.exec(Object.prototype.toString.call('Hello'.toArray()), '[object Array]')
-		.done();
-})
-
-.test('String.prototype.toArray', function()
-{
-	this
-		.describe("'Hello'.toArray() is ['H', 'e', 'l', 'l', 'o']")
-		.exec('Hello'.toArray().toString(), ['H', 'e', 'l', 'l', 'o'].toString())
-		.done();
-});
-

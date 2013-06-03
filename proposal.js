@@ -48,6 +48,22 @@ void function(__object__, __array__, __global__)
 	 * ------------------------------------------------------------
 	 */
 
+	/**
+	 * Object.isObject
+	 * @edition ECMA-262 6th Edition, 15.2.3.15
+	 * Removed in Rev 9 July 8, 2012 ECMA-262 6 Draft
+	 *
+	 * @param {Object}
+	 * @return {Boolean}
+	 *
+	 * @example:
+	 *
+	 * Object.isObject({}); // true
+	**/
+	define.call(Object, 'isObject', function(object) {
+		return __object__.toString.call(object) === '[object Object]';
+	});
+
 
 	/**
 	 * Object.getOwnPropertyDescriptors
@@ -151,9 +167,11 @@ void function(__object__, __array__, __global__)
 		return descriptor;
 	});
 
+
 	/**
 	 * Object.getPropertyNames
 	 * Returns an array of all the names of the properties
+	 *
 	 * @param {Object} object
 	 * @throws {TypeError}
 	 * @edition proposal
@@ -194,9 +212,11 @@ void function(__object__, __array__, __global__)
 		return properies;
 	});
 
+
 	/**
 	 * Object.isnt
 	 * Opposed to the Object.isnt
+	 *
 	 * @param {*} - first generic value for egal comparison
 	 * @param {*} - second generic value for egal comparison
 	 * @requires Object.is
@@ -208,6 +228,24 @@ void function(__object__, __array__, __global__)
 	**/
 	define.call(Object, 'isnt', function(x, y) {
 		return !Object.is(x, y);
+	});
+
+
+	/**
+	 * String.prototype.toArray
+	 * @edition ECMA-262 6th Edition, 15.5.4.25
+	 * Removed in Rev 9 July 8, 2012 ECMA-262 6 Draft
+	 *
+	 * Creates an array from the specified String object
+	 * @return {Array} Returns an Array object with elements corresponding to
+	 * the characters of this object (converted to a String).
+	 *
+	 * @example:
+	 *
+	 * Hello'.toArray() // ['H', 'e', 'l', 'l', 'o'];
+	**/
+	define.call(String.prototype, 'toArray', function() {
+		return this.split('');
 	});
 
 }

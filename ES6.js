@@ -4,7 +4,7 @@
  * Implementation of ECMAScript 6 (Draft)
  * @requires: ECMAScript 5
  * @author:   Alexander Guinness <monolithed@gmail.com>
- * @version:  0.0.9
+ * @version:  0.0.10
  * @license:  MIT
  * @date:     Thu Nov 1 00:08:00 2011
  **/
@@ -235,23 +235,6 @@ void function(__object__, __array__, __global__)
 
 
 	/**
-	 * String.prototype.toArray
-	 * @edition ECMA-262 6th Edition, 15.5.4.25
-	 *
-	 * Creates an array from the specified String object
-	 * @return {Array} Returns an Array object with elements corresponding to
-	 * the characters of this object (converted to a String).
-	 *
-	 * @example:
-	 *
-	 * Hello'.toArray() // ['H', 'e', 'l', 'l', 'o'];
-	**/
-	define.call(String.prototype, 'toArray', function() {
-		return this.split('');
-	});
-
-
-	/**
 	 * ------------------------------------------------------------
 	 *  Array
 	 * ------------------------------------------------------------
@@ -318,21 +301,6 @@ void function(__object__, __array__, __global__)
 	 *  Object
 	 * ------------------------------------------------------------
 	 */
-
-
-	/**
-	 * Object.isObject
-	 * @param {Object}
-	 * @return {Boolean}
-	 * @edition ECMA-262 6th Edition, 15.2.3.15
-	 *
-	 * @example:
-	 *
-	 * Object.isObject({}); // true
-	**/
-	define.call(Object, 'isObject', function(object) {
-		return __object__.toString.call(object) === '[object Object]';
-	});
 
 
 	/**

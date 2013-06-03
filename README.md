@@ -36,14 +36,14 @@ ECMAScript 6 Harmony polyfil
 * **String.prototype.contains**<br />
 *ECMA-262 6th Edition, 15.5.4.24*<br />
 
-* **String.prototype.toArray**<br />
-*ECMA-262 6th Edition, 15.5.4.25*<br />
+* **~~String.prototype.toArray~~**<br />
+*~~ECMA-262 6th Edition, 15.5.4.25~~*<br />
 
 
 ## Object
 
-* **Object.isObject**<br />
-*ECMA-262 6th Edition, 15.2.3.15*<br />
+* **~~Object.isObject~~**<br />
+*~~ECMA-262 6th Edition, 15.2.3.15~~*<br />
 
 * **Object.getOwnPropertyKeys**<br />
 *ECMA-262 6th Edition, 15.2.3.15*<br />
@@ -145,6 +145,10 @@ ECMAScript 6 Harmony polyfil
 * **Object.getPropertyNames**<br />
 
 * **Object.isnt**<br />
+
+* **Object.isObject**<br />
+
+* **String.prototype.toArray**<br />
 
 
 ## TODO
