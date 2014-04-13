@@ -593,11 +593,26 @@ new Suitest('Math.trunc')
 	this
 		.exec(Math.trunc(0.1), 0, 'eg')
 		.done();
+})
+
+
+.test('Math.trunc: 1e+211', function()
+{
+	this
+		.exec(Math.trunc(1e+21), 1e+21, 'eg')
+		.done();
+})
+
+.test('Math.trunc: -1e+211', function()
+{
+	this
+		.exec(Math.trunc(-1e+21), -1e+21, 'eg')
+		.done();
 });
 
 
 /*
- Math.trunc
+ Math.sign
 */
 
 new Suitest('Math.sign')

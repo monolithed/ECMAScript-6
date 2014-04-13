@@ -61,7 +61,7 @@ void function(__object__, __array__, __global__)
 	 * Object.isObject({}); // true
 	**/
 	define.call(Object, 'isObject', function(object) {
-		return __object__.toString.call(object) === '[object Object]';
+		return object && __object__.toString.call(object) === '[object Object]';
 	});
 
 

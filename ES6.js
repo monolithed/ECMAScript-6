@@ -843,7 +843,12 @@ void function(__object__, __array__, __global__)
 	 * Math.trunc(1.1) // 1
 	**/
 	define.call(Math, 'trunc', function(value) {
-		return value === 0 ? value : !Number.isFinite(value) ? value : value | 0;
+		value = Number(value);
+
+		if (__global__.isNaN(value) || value === 0 || !Number.isFinite(value))
+			return value;
+
+		return Math.sign(value) * Math.floor(Math.abs(value));
 	});
 
 
