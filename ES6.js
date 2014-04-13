@@ -919,332 +919,332 @@ void function(__object__, __array__, __global__)
 	});
 
 
-	/**
-	 * ------------------------------------------------------------
-	 *  Collections (data structures)
-	 * ------------------------------------------------------------
-	**/
-
-	/**
-	 * @private
-	 * @param {Array} array
-	 * @param {*} value
-	 * @requires Object.is
-	 * @return {Number}
-	 **/
-	var __find__ =  function(array, value) {
-		var i = array.length >>> 0;
-
-		while (i--)
-			if (i in array && Object.is(array[i], value))
-				return i;
-		return -1;
-	};
-
-	/**
-	 * Map
-	 * @edition ECMA-262 6th Edition, 5.14
-	 *
-	 * NOTE: Need more compatible with Rev 14!
-	 *
-	 * @class
-	 * @memberOf global
-	 *
-	 * @description
-	 * Map objects are simple key/value maps. Any value (both objects and primitive values)
-	 * may be used as either a key or a value. Key equality is based on the "same-value"
-	 * algorithm: NaN is considered the same as NaN (even though NaN !== NaN), -0 and +0
-	 * are considered distinct (even though -0 === +0), and all other values are considered
-	 * equal according to the semantics of the === operator.
-	 *
-	 * @example:
-	 *
-	 * var map = new Map();
-	 *
-	 * // Setting the values
-	 * map.set(-0,  0);
-	 * map.set(+0,  1);
-	 * map.set('b', 2);
-	 * map.set('a', 3);
-	 * map.set('a', 4);
-	 * map.set(Array, 5);
-	 * map.set([], 6);
-	 * map.set(NaN, 7);
-	 * map.set(function() {}, 8);
-	 *
-	 * // Getting the values
-	 * map.get(-0);  // 0
-	 * map.get(+0);  // 1
-	 * map.get('b'); // 2
-	 * map.get('a'); // 4
-	 * map.get(Array); // 5
-	 * map.get([]);  // undefined
-	 * map.get(NaN); // 7
-	 * map.get(function() {}); // undefined
-	 *
-	 * // Removes any value associated to the key
-	 * map.delete('a'); // true
-	 *
-	 * // Check the keys
-	 * map.has(-0); // true
-	 *
-	 * // Getting the number of pairs in Map
-	 * map.size(); // 7
-	 *
-	 * // Iterating over values stored in Set
-	 * map.__iterator__(function(key, value) {
-	 *    console.log(key, value);
-	 * });
-	**/
-	define.call(__global__, 'Map', function()
-	{
-		if (!(this instanceof Map))
-			return new Map;
-
-		var index = 0;
-
-		/** @static */
-		define.call(this, {
-			keys:   [],
-			values: []
-		});
-
-		/**
-		 * @lends Map.prototype
-		 * @constructs
-		**/
-		define.call(Map.prototype, {
-			/**
-			 * Map.get
-			 * Returns the value associated to the key, or undefined if there is none.
-			 * @param {*}
-			 * @return {*}
-			 */
-			get: function(key)
-			{
-				if ((index = __find__(this.keys, key)) !== -1)
-					return this.values[index];
-			},
-
-			/**
-			 * Map.set
-			 * Sets the value for the key in Map. Returns undefined.
-			 * @param {*} key
-			 * @param {*} value
-			 * @return {void}
-			 */
-			set: function(key, value)
-			{
-				if ((index = __find__(this.keys, key)) === -1) {
-					this.keys.push(key);
-					this.values.push(value);
-				}
-				else
-					this.values[index] = value;
-			},
-
-			/**
-			 * Map.has
-			 * Returns a boolean asserting whether a value has been associated to the key in Map or not
-			 * @param {*} key
-			 * @return {Boolean}
-			 */
-			has: function(key) {
-				return __find__(this.keys, key) !== -1;
-			},
-
-			/**
-			 * Map.clear
-			 * @return {void}
-			 */
-			clear: function() {
-				this.values.length = 0;
-				this.keys.length = 0;
-			},
-
-			/**
-			 * Map.delete
-			 * Removes any value associated to the key. After such a call, myMap.has(key) will return false.
-			 * @param {*} key
-			 * @return {Boolean}
-			 */
-			'delete': function(key)
-			{
-				if ((index = __find__(this.keys, key)) === -1)
-					return false;
-
-				this.keys.splice(index, 1);
-				this.values.splice(index, 1);
-
-				return true;
-			},
-
-			/**
-			 * Map.size
-			 * Returns the number of key/value pairs in Map.
-			 * @return {Number}
-			 */
-			size: function() {
-				return this.keys.length >>> 0;
-			},
-
-			/**
-			 * Map.__iterator__ ( Undocumented feature )
-			 * Allow for iterating over Maps and enumerating their keys
-			 * @param {Function} callback - is invoked with two arguments (the element key and value)
-			 * @param {Object} [ context ] - Object to use as <this> when executing callback
-			 * @return {void}
-			 */
-			__iterator__: function(callback, context)
-			{
-				for (var i = 0, length = this.size(); i < length; i++) {
-					if (i in this.keys && i in this.values)
-						if (callback.call(context, this.keys[i], this.values[i]) === false)
-							break;
-				}
-			}
-		});
-	});
-
-
-	/**
-	 * Set
-	 * @edition ECMA-262 6th Edition, 5.16
-	 * NOTE: Need more compatible with Rev 14!
-	 *
-	 * @class
-	 * @memberOf global
-	 *
-	 * @description
-	 * Set objects let you store unique values of any type, whether primitive values or object references.
-	 * Values equality is not based on the same algorithm as the one used in the === operator.
-	 * Specifically, for Sets, +0 (which is strictly equal to -0) and -0 are different values.
-	 * NaN can also be stored in a Set.
-	 *
-	 * @example:
-	 *
-	 * var set = new Set();
-	 *
-	 * // Setting the values
-	 *
-	 * set.add(-0);
-	 * set.add(+0);
-	 * set.add('b');
-	 * set.add('a');
-	 * set.add('a');
-	 * set.add(Array);
-	 * set.add([]);
-	 * set.add(function() {});
-	 * set.add(NaN);
-	 *
-	 * // Check the values
-	 * set.has(-0);  // true
-	 * set.has(+0);  // true
-	 * set.has('b'); // true
-	 * set.has('a'); // true
-	 * set.has(Array); // true
-	 * set.has([]);  // false
-	 * set.has(NaN); // true
-	 * set.has(function() {}); // false
-	 *
-	 * // Removes the value
-	 * map.delete(-0); // true
-	 *
-	 * // Getting the number of values in Set
-	 * set.size(); // 7
-	 *
-	 * // Iterating over values stored in Set
-	 * set.__iterator__(function(value) {
-	 *    console.log(value);
-	 * });
-	**/
-	define.call(__global__, 'Set', function()
-	{
-		if (!(this instanceof Set))
-			return new Set;
-
-		var index = 0;
-
-		/** @static */
-		define.call(this, {
-			values: []
-		});
-
-		/**
-		 * @lends Set.prototype
-		 * @constructs
-		**/
-		define.call(Set.prototype, {
-			/**
-			 * Set.add
-			 * Adds the value to mySet. Returns undefined.
-			 * @param {*} value
-			 * @return {void}
-			 */
-			add: function(value) {
-				if ((index = __find__(this.values, value)) === -1)
-					this.values.push(value);
-				else
-					this.values[index] = value;
-			},
-
-			/**
-			 * Set.has
-			 * Returns a boolean asserting whether the value has been added to Set or not
-			 * @param {*} value
-			 * @return {Boolean}
-			 */
-			has: function(value) {
-				return __find__(this.values, value) !== -1;
-			},
-
-			/**
-			 * Set.clear
-			 * @return {void}
-			 */
-			clear: function() {
-				this.values.length = 0;
-			},
-
-			/**
-			 * Set.delete
-			 * Sets the value for the key in mySet. Returns undefined.
-			 * @param {*} key
-			 * @return {void}
-			 */
-			'delete': function(value) {
-				if ((index = __find__(this.values, value)) === -1)
-					return false;
-
-				this.values.splice(index, 1);
-
-				return true;
-			},
-
-			/**
-			 * Set.size()
-			 * Returns the number of values in Set.
-			 * @return {Number}
-			 */
-			size: function() {
-				return this.values.length >>> 0;
-			},
-
-			/**
-			 * Set.__iterator__ ( Undocumented feature )
-			 * Allow for iterating over values stored in Set
-			 * @param {Function} callback - is invoked with one argument (the element value)
-			 * @param {Object} [ context ] - Object to use as <this> when executing callback
-			 * @return {void}
-			 */
-			__iterator__: function(callback, context) {
-				for (var i = 0, length = this.size(); i < length; i++) {
-					if (i in this.values)
-						callback.call(context, this.values[i]);
-				}
-			}
-		});
-	});
+//	/**
+//	 * ------------------------------------------------------------
+//	 *  Collections (data structures)
+//	 * ------------------------------------------------------------
+//	**/
+//
+//	/**
+//	 * @private
+//	 * @param {Array} array
+//	 * @param {*} value
+//	 * @requires Object.is
+//	 * @return {Number}
+//	 **/
+//	var __find__ =  function(array, value) {
+//		var i = array.length >>> 0;
+//
+//		while (i--)
+//			if (i in array && Object.is(array[i], value))
+//				return i;
+//		return -1;
+//	};
+//
+//	/**
+//	 * Map
+//	 * @edition ECMA-262 6th Edition, 5.14
+//	 *
+//	 * NOTE: Need more compatible with Rev 14!
+//	 *
+//	 * @class
+//	 * @memberOf global
+//	 *
+//	 * @description
+//	 * Map objects are simple key/value maps. Any value (both objects and primitive values)
+//	 * may be used as either a key or a value. Key equality is based on the "same-value"
+//	 * algorithm: NaN is considered the same as NaN (even though NaN !== NaN), -0 and +0
+//	 * are considered distinct (even though -0 === +0), and all other values are considered
+//	 * equal according to the semantics of the === operator.
+//	 *
+//	 * @example:
+//	 *
+//	 * var map = new Map();
+//	 *
+//	 * // Setting the values
+//	 * map.set(-0,  0);
+//	 * map.set(+0,  1);
+//	 * map.set('b', 2);
+//	 * map.set('a', 3);
+//	 * map.set('a', 4);
+//	 * map.set(Array, 5);
+//	 * map.set([], 6);
+//	 * map.set(NaN, 7);
+//	 * map.set(function() {}, 8);
+//	 *
+//	 * // Getting the values
+//	 * map.get(-0);  // 0
+//	 * map.get(+0);  // 1
+//	 * map.get('b'); // 2
+//	 * map.get('a'); // 4
+//	 * map.get(Array); // 5
+//	 * map.get([]);  // undefined
+//	 * map.get(NaN); // 7
+//	 * map.get(function() {}); // undefined
+//	 *
+//	 * // Removes any value associated to the key
+//	 * map.delete('a'); // true
+//	 *
+//	 * // Check the keys
+//	 * map.has(-0); // true
+//	 *
+//	 * // Getting the number of pairs in Map
+//	 * map.size(); // 7
+//	 *
+//	 * // Iterating over values stored in Set
+//	 * map.__iterator__(function(key, value) {
+//	 *    console.log(key, value);
+//	 * });
+//	**/
+//	define.call(__global__, 'Map', function()
+//	{
+//		if (!(this instanceof Map))
+//			return new Map;
+//
+//		var index = 0;
+//
+//		/** @static */
+//		define.call(this, {
+//			keys:   [],
+//			values: []
+//		});
+//
+//		/**
+//		 * @lends Map.prototype
+//		 * @constructs
+//		**/
+//		define.call(Map.prototype, {
+//			/**
+//			 * Map.get
+//			 * Returns the value associated to the key, or undefined if there is none.
+//			 * @param {*}
+//			 * @return {*}
+//			 */
+//			get: function(key)
+//			{
+//				if ((index = __find__(this.keys, key)) !== -1)
+//					return this.values[index];
+//			},
+//
+//			/**
+//			 * Map.set
+//			 * Sets the value for the key in Map. Returns undefined.
+//			 * @param {*} key
+//			 * @param {*} value
+//			 * @return {void}
+//			 */
+//			set: function(key, value)
+//			{
+//				if ((index = __find__(this.keys, key)) === -1) {
+//					this.keys.push(key);
+//					this.values.push(value);
+//				}
+//				else
+//					this.values[index] = value;
+//			},
+//
+//			/**
+//			 * Map.has
+//			 * Returns a boolean asserting whether a value has been associated to the key in Map or not
+//			 * @param {*} key
+//			 * @return {Boolean}
+//			 */
+//			has: function(key) {
+//				return __find__(this.keys, key) !== -1;
+//			},
+//
+//			/**
+//			 * Map.clear
+//			 * @return {void}
+//			 */
+//			clear: function() {
+//				this.values.length = 0;
+//				this.keys.length = 0;
+//			},
+//
+//			/**
+//			 * Map.delete
+//			 * Removes any value associated to the key. After such a call, myMap.has(key) will return false.
+//			 * @param {*} key
+//			 * @return {Boolean}
+//			 */
+//			'delete': function(key)
+//			{
+//				if ((index = __find__(this.keys, key)) === -1)
+//					return false;
+//
+//				this.keys.splice(index, 1);
+//				this.values.splice(index, 1);
+//
+//				return true;
+//			},
+//
+//			/**
+//			 * Map.size
+//			 * Returns the number of key/value pairs in Map.
+//			 * @return {Number}
+//			 */
+//			size: function() {
+//				return this.keys.length >>> 0;
+//			},
+//
+//			/**
+//			 * Map.__iterator__ ( Undocumented feature )
+//			 * Allow for iterating over Maps and enumerating their keys
+//			 * @param {Function} callback - is invoked with two arguments (the element key and value)
+//			 * @param {Object} [ context ] - Object to use as <this> when executing callback
+//			 * @return {void}
+//			 */
+//			__iterator__: function(callback, context)
+//			{
+//				for (var i = 0, length = this.size(); i < length; i++) {
+//					if (i in this.keys && i in this.values)
+//						if (callback.call(context, this.keys[i], this.values[i]) === false)
+//							break;
+//				}
+//			}
+//		});
+//	});
+//
+//
+//	/**
+//	 * Set
+//	 * @edition ECMA-262 6th Edition, 5.16
+//	 * NOTE: Need more compatible with Rev 14!
+//	 *
+//	 * @class
+//	 * @memberOf global
+//	 *
+//	 * @description
+//	 * Set objects let you store unique values of any type, whether primitive values or object references.
+//	 * Values equality is not based on the same algorithm as the one used in the === operator.
+//	 * Specifically, for Sets, +0 (which is strictly equal to -0) and -0 are different values.
+//	 * NaN can also be stored in a Set.
+//	 *
+//	 * @example:
+//	 *
+//	 * var set = new Set();
+//	 *
+//	 * // Setting the values
+//	 *
+//	 * set.add(-0);
+//	 * set.add(+0);
+//	 * set.add('b');
+//	 * set.add('a');
+//	 * set.add('a');
+//	 * set.add(Array);
+//	 * set.add([]);
+//	 * set.add(function() {});
+//	 * set.add(NaN);
+//	 *
+//	 * // Check the values
+//	 * set.has(-0);  // true
+//	 * set.has(+0);  // true
+//	 * set.has('b'); // true
+//	 * set.has('a'); // true
+//	 * set.has(Array); // true
+//	 * set.has([]);  // false
+//	 * set.has(NaN); // true
+//	 * set.has(function() {}); // false
+//	 *
+//	 * // Removes the value
+//	 * map.delete(-0); // true
+//	 *
+//	 * // Getting the number of values in Set
+//	 * set.size(); // 7
+//	 *
+//	 * // Iterating over values stored in Set
+//	 * set.__iterator__(function(value) {
+//	 *    console.log(value);
+//	 * });
+//	**/
+//	define.call(__global__, 'Set', function()
+//	{
+//		if (!(this instanceof Set))
+//			return new Set;
+//
+//		var index = 0;
+//
+//		/** @static */
+//		define.call(this, {
+//			values: []
+//		});
+//
+//		/**
+//		 * @lends Set.prototype
+//		 * @constructs
+//		**/
+//		define.call(Set.prototype, {
+//			/**
+//			 * Set.add
+//			 * Adds the value to mySet. Returns undefined.
+//			 * @param {*} value
+//			 * @return {void}
+//			 */
+//			add: function(value) {
+//				if ((index = __find__(this.values, value)) === -1)
+//					this.values.push(value);
+//				else
+//					this.values[index] = value;
+//			},
+//
+//			/**
+//			 * Set.has
+//			 * Returns a boolean asserting whether the value has been added to Set or not
+//			 * @param {*} value
+//			 * @return {Boolean}
+//			 */
+//			has: function(value) {
+//				return __find__(this.values, value) !== -1;
+//			},
+//
+//			/**
+//			 * Set.clear
+//			 * @return {void}
+//			 */
+//			clear: function() {
+//				this.values.length = 0;
+//			},
+//
+//			/**
+//			 * Set.delete
+//			 * Sets the value for the key in mySet. Returns undefined.
+//			 * @param {*} key
+//			 * @return {void}
+//			 */
+//			'delete': function(value) {
+//				if ((index = __find__(this.values, value)) === -1)
+//					return false;
+//
+//				this.values.splice(index, 1);
+//
+//				return true;
+//			},
+//
+//			/**
+//			 * Set.size()
+//			 * Returns the number of values in Set.
+//			 * @return {Number}
+//			 */
+//			size: function() {
+//				return this.values.length >>> 0;
+//			},
+//
+//			/**
+//			 * Set.__iterator__ ( Undocumented feature )
+//			 * Allow for iterating over values stored in Set
+//			 * @param {Function} callback - is invoked with one argument (the element value)
+//			 * @param {Object} [ context ] - Object to use as <this> when executing callback
+//			 * @return {void}
+//			 */
+//			__iterator__: function(callback, context) {
+//				for (var i = 0, length = this.size(); i < length; i++) {
+//					if (i in this.values)
+//						callback.call(context, this.values[i]);
+//				}
+//			}
+//		});
+//	});
 }
 (Object.prototype, Array.prototype, function() {
 	return this;

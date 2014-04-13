@@ -3,11 +3,6 @@
 ECMAScript 6 Harmony polyfil
 
 
-## Collections (data structures)
-
-* **Map**<br />
-* **Set**<br />
-
 ## Array
 
 * **Array.of**<br />
@@ -157,30 +152,6 @@ ECMAScript 6 Harmony polyfil
 * *MapIterator.prototype*<br />
 * *RegeExp.prototype...*<br />
 
-
-## Installation
-
-#### Downloading
-
-Choose one of the ways to download the ECMAScript 6 Harmony polyfil:
-
-*npm*
-
-```
-sudo npm install -g es6
-```
-
-*git*
-
-```
-git clone git@github.com:monolithed/ECMAScript-6.git
-```
-
-*zip/gzip*
-
-```
-https://github.com/monolithed/ECMAScript-6/downloads
-```
 
 #### Server-side including
 
