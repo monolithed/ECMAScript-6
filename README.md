@@ -2,6 +2,8 @@
 
 ECMAScript 6 Harmony polyfil
 
+## Please use https://github.com/paulmillr/es6-shim/ insted!
+
 
 ## Array
 
